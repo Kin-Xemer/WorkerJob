@@ -46,7 +46,7 @@ const WorkerInformation = (props) => {
           </Center>
           <Center size={24} margin={1}>
             <Text style={{ fontSize: 24 }}>50</Text>
-            <Text>Lượt đánh giá</Text>
+            <Text>Lượt đánh giáa</Text>
           </Center>
         </Flex>
       </Box>
