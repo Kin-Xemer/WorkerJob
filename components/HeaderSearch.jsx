@@ -1,31 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  FlatList,
-  Dimensions,
-} from "react-native";
+import { useState } from "react";
+import { StyleSheet, View, Dimensions } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
-import {
-  MaterialCommunityIcons,
-  Ionicons,
-  FontAwesome5,
-  Feather,
-} from "@expo/vector-icons";
-import {
-  Input,
-  Icon,
-  Pressable,
-  Box,
-  HStack,
-  Flex,
-  Spacer,
-  IconButton,
-} from "native-base";
+import { Ionicons } from "@expo/vector-icons";
+import { Flex, IconButton } from "native-base";
 import { SearchBar } from "react-native-elements";
 const HeaderSearch = (props) => {
   const windowWidth = Dimensions.get("window").width;

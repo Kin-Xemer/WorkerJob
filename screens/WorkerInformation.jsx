@@ -1,17 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Box,
-  Heading,
-  Center,
-  Stack,
-  Pressable,
-  HStack,
-  Button,
-  Flex,
-  Spacer,
-  VStack,
-  IconButton,
-} from "native-base";
+import { Box, Center, Flex, VStack } from "native-base";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -46,7 +34,6 @@ const WorkerInformation = (props) => {
           </Center>
           <Center size={24} margin={1}>
             <Text style={{ fontSize: 24 }}>50</Text>
-            <Text>Lượt đánh giá</Text>
             <Text>Lượt đánh giá</Text>
           </Center>
         </Flex>

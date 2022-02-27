@@ -1,15 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import Carousel, { Pagination } from "react-native-snap-carousel";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import {
-  View,
-  ScrollView,
-  FlatList,
-  Text,
-  Dimensions,
-  StyleSheet,
-} from "react-native";
-import BestServices from "./BestServices";
+import Carousel from "react-native-snap-carousel";
+import { View, Dimensions, StyleSheet } from "react-native";
 import WorkerRecommend from "./WorkerRecommend";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const ListWorkerRecommend = (props) => {

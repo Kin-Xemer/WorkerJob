@@ -1,19 +1,11 @@
 import { useState, useEffect } from "react";
-import { useRoute, useNavigation } from "@react-navigation/native";
 import {
   View,
   ScrollView,
   FlatList,
-  Text,
   Dimensions,
   StyleSheet,
 } from "react-native";
-import { List, ListItem } from "native-base";
-import {
-  MaterialCommunityIcons,
-  FontAwesome,
-  MaterialIcons,
-} from "@expo/vector-icons";
 import BestServices from "./BestServices";
 const ListBestServies = (props) => {
   const [bestService, setBestService] = useState([

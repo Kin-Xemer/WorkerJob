@@ -1,24 +1,7 @@
-import { useState, useEffect } from "react";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import { View, StyleSheet, ImageBackground } from "react-native";
-import { Rating, AirbnbRating } from "react-native-ratings";
+import { View, StyleSheet } from "react-native";
+import { AirbnbRating } from "react-native-ratings";
 import { convertStar } from "../Utils/convertStar";
-import {
-  MaterialCommunityIcons,
-  FontAwesome,
-  MaterialIcons,
-} from "@expo/vector-icons";
-import {
-  Input,
-  Icon,
-  Pressable,
-  Box,
-  HStack,
-  Button,
-  Text,
-  Flex,
-  Spacer,
-} from "native-base";
+import { Pressable, Box, Button, Text, Flex, Spacer } from "native-base";
 const BestServices = (props) => {
   const { bestService } = props;
   return (
@@ -49,7 +32,6 @@ const BestServices = (props) => {
               ],
             }}
           >
-            <HStack alignItems="center"></HStack>
             <Text color="coolGray.800" mt="1" fontWeight="bold" fontSize="xl">
               {bestService.serviceName}
             </Text>

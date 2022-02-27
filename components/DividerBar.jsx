@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Button,
-  ImageBackground,
-  ScrollView,
-} from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Divider } from "native-base";
 const DividerBar = (props) => {
   const { dividerName } = props;

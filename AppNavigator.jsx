@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, Button } from "react-native";
+import { StyleSheet } from "react-native";
 import {
   createStackNavigator,
   TransitionPresets,
@@ -116,14 +116,4 @@ const SettingScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "stretch",
-    justifyContent: "center",
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
-});
 export default AppNavigator;

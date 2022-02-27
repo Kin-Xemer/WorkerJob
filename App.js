@@ -1,8 +1,5 @@
-import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import HomeScreen from "./screens/HomeScreen";
 import { LogBox } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import AppNavigator from "./AppNavigator";
@@ -20,13 +17,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 50,
-  },
-});

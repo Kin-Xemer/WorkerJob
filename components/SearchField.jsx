@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { View, StyleSheet, ImageBackground, Image } from "react-native";
-import {
-  MaterialCommunityIcons,
-  FontAwesome,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Input, Icon } from "native-base";
 import posterImg from "../assets/posterWJ2.jpg";
 const SearchField = (props) => {
-  const image = { uri: "https://reactjs.org/logo-og.png" };
   return (
     <View style={styles.searchField}>
       <Image style={styles.backgroundShape} source={posterImg}></Image>
