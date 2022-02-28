@@ -1,11 +1,22 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import { AirbnbRating } from "react-native-ratings";
 import { convertStar } from "../Utils/convertStar";
 import { Pressable, Box, Button, Text, Flex, Spacer } from "native-base";
+import { useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 const BestServices = (props) => {
   const { bestService } = props;
+  const route = useRoute();
+  const navigation = useNavigation();
   return (
-    <Pressable style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => {
+        navigation.navigate("ServiceDetailScreen", {
+          bestService: bestService,
+        });
+      }}
+    >
       {({ isHovered, isFocused, isPressed }) => {
         return (
           <Box
@@ -19,8 +30,8 @@ const BestServices = (props) => {
                 ? "coolGray.200"
                 : "coolGray.100"
             }
-            pt={5}
-            pb={5}
+            pt={3}
+            pb={3}
             pl={3}
             pr={3}
             rounded="12"
@@ -45,6 +56,7 @@ const BestServices = (props) => {
             ) : (
               <View style={{ alignItems: "flex-start", marginRight: "auto" }}>
                 <AirbnbRating
+                  isDisabled={true}
                   count={5}
                   defaultRating={convertStar(bestService.rating)}
                   size={20}

@@ -19,7 +19,7 @@ const HomeScreen = (props) => {
         <Servies />
         <DividerBar dividerName="Dịch vụ nổi bật" />
         <ListBestServies />
-        <ListBestServies />
+        <DividerBar dividerName="Mã giảm giá" />
       </ScrollView>
     </View>
   );

@@ -15,6 +15,7 @@ import {
 import Home from "./screens/HomeScreen";
 import ServicesRecommend from "./screens/ServicesRecommend";
 import WorkerInformation from "./screens/WorkerInformation";
+import ServiceDetailScreen from "./screens/ServiceDetailScreen";
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const AppNavigator = () => {
@@ -35,7 +36,7 @@ const AppNavigator = () => {
         options={{
           tabBarLabel: "Trang Chủ",
           tabBarIcon: ({ color }) => (
-            <Feather name="home" color={color} size={25} />
+            <Ionicons name="home-outline" color={color} size={25} />
           ),
         }}
       />
@@ -45,11 +46,7 @@ const AppNavigator = () => {
         options={{
           tabBarLabel: "Lịch Hẹn",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="account-clock-outline"
-              color={color}
-              size={24}
-            />
+            <Ionicons name="alarm-outline" color={color} size={26} />
           ),
         }}
       />
@@ -89,6 +86,10 @@ const HomeScreen = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="ServicesRecommend" component={ServicesRecommend} />
       <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
+      <Stack.Screen
+        name="ServiceDetailScreen"
+        component={ServiceDetailScreen}
+      />
     </Stack.Navigator>
   );
 };
