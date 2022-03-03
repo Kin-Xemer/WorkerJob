@@ -37,6 +37,7 @@ const Header = (props) => {
       </Flex>
       <Flex direction="row" paddingTop={1}>
         <Text
+          width={screenWidth / 2.5}
           color="black"
           fontWeight="bold"
           fontSize="24"
@@ -55,7 +56,7 @@ const Header = (props) => {
           thickness="2"
         />
         <Flex direction="row">
-          <Text mt={1} fontSize={18}>
+          <Text mt={1} fontSize={18} width={screenWidth / 4}>
             {" "}
             <AntDesign name="star" size={18} color="#02b2b9" /> 4.86/5
           </Text>
@@ -85,21 +86,21 @@ const styles = StyleSheet.create({
   backIconButton: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#e0e0e0",
+    backgroundColor: "#F0F0F0",
     borderRadius: 15,
     height: 40,
     width: 40,
-    marginTop: 12,
+    marginTop: 8,
   },
   textStyle: {
-    paddingTop: 15,
-    fontWeight: "400",
+    paddingTop: 12,
+    fontWeight: "800",
     fontSize: 24,
   },
   heartStyle: {
-    width: screenWidth / 2.3,
+    width: screenWidth / 4,
     marginTop: 7,
-    paddingRight: 8,
+    paddingLeft: 8,
     alignItems: "flex-end",
   },
 });

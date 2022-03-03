@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     height: 130,
     borderRadius: 63,
     borderWidth: 4,
-    borderColor: "#fff",
+    borderColor: "white",
     marginBottom: 10,
     alignSelf: "center",
     marginTop: 130,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: screenWidth,
     height: screenHeight - 205,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
   avatarStyle: {
     zIndex: 1,

@@ -41,6 +41,7 @@ const ServicesRecommend = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "white",
     flex: 1,
     alignItems: "flex-start",
   },

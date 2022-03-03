@@ -20,12 +20,62 @@ const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const AppNavigator = () => {
   return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        ...TransitionPresets.SlideFromRightIOS,
+        gestureDirection: "horizontal",
+        headerTitleAlign: "center",
+      }}
+    >
+      <Stack.Screen name="TabNaviHome" component={TabNavigator} />
+      <Stack.Screen
+        name="ServiceDetailScreen"
+        component={ServiceDetailScreen}
+      />
+    </Stack.Navigator>
+  );
+};
+const HomeScreen = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        ...TransitionPresets.SlideFromRightIOS,
+        gestureDirection: "horizontal",
+        headerTitleAlign: "center",
+      }}
+    >
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="ServicesRecommend" component={ServicesRecommend} />
+      <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
+    </Stack.Navigator>
+  );
+};
+
+const CartScreen = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Cart" component={Cart} />
+    </Stack.Navigator>
+  );
+};
+
+const OrdersScreen = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Orders" component={Cart} />
+    </Stack.Navigator>
+  );
+};
+const TabNavigator = () => {
+  return (
     <Tab.Navigator
       labled={true}
       activeColor={"#02b2b9"}
       shifting={false}
       initialRouteName="HomeScreen"
-      barStyle={{ backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 }}
+      barStyle={{ backgroundColor: "white", paddingTop: 0, paddingBottom: 0 }}
       screenOptions={{
         headerShown: false,
       }}
@@ -71,42 +121,6 @@ const AppNavigator = () => {
         }}
       />
     </Tab.Navigator>
-  );
-};
-const HomeScreen = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        ...TransitionPresets.SlideFromRightIOS,
-        gestureDirection: "horizontal",
-        headerTitleAlign: "center",
-      }}
-    >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="ServicesRecommend" component={ServicesRecommend} />
-      <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
-      <Stack.Screen
-        name="ServiceDetailScreen"
-        component={ServiceDetailScreen}
-      />
-    </Stack.Navigator>
-  );
-};
-
-const CartScreen = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Cart" component={Cart} />
-    </Stack.Navigator>
-  );
-};
-
-const OrdersScreen = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Orders" component={Cart} />
-    </Stack.Navigator>
   );
 };
 const SettingScreen = () => {

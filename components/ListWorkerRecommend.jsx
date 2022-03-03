@@ -372,6 +372,7 @@ const ListWorkerRecommend = (props) => {
     <View>
       {entriesSplitter()}
       <Carousel
+        enableSnap={true}
         activeAnimationType="spring"
         ref={carousel}
         data={slides}
@@ -386,11 +387,6 @@ const ListWorkerRecommend = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "transparent",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 10,
-    marginHorizontal: 4,
     maxWidth: "100%",
   },
 });

@@ -30,7 +30,7 @@ const HeaderSearch = (props) => {
           <SearchBar
             inputContainerStyle={{
               height: "auto",
-              backgroundColor: "#e0e0e0",
+              backgroundColor: "#f0f0f0",
               maxWidth: "100%",
               borderRadius: 20,
             }}
@@ -53,7 +53,7 @@ const HeaderSearch = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     alignItems: "stretch",
     justifyContent: "center",
   },
@@ -64,11 +64,12 @@ const styles = StyleSheet.create({
   },
   searchBarStyle: {
     maxWidth: "100%",
+    backgroundColor: "#f0f0f0",
   },
   backIconButton: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#e0e0e0",
+    backgroundColor: "#f0f0f0",
     borderRadius: 15,
     height: 40,
     width: 40,

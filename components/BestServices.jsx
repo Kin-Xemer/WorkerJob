@@ -1,9 +1,10 @@
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import { AirbnbRating } from "react-native-ratings";
 import { convertStar } from "../Utils/convertStar";
 import { Pressable, Box, Button, Text, Flex, Spacer } from "native-base";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const BestServices = (props) => {
   const { bestService } = props;
   const route = useRoute();
@@ -20,7 +21,7 @@ const BestServices = (props) => {
       {({ isHovered, isFocused, isPressed }) => {
         return (
           <Box
-            maxW="96"
+            maxW={screenWidth * 0.75}
             borderWidth="0.7"
             borderColor="coolGray.300"
             bg={
@@ -41,12 +42,13 @@ const BestServices = (props) => {
                   scale: isPressed ? 0.98 : 1,
                 },
               ],
+              backgroundColor: "white",
             }}
           >
             <Text color="coolGray.800" mt="1" fontWeight="bold" fontSize="xl">
               {bestService.serviceName}
             </Text>
-            <Text mt="2" fontSize={10} color="coolGray.400">
+            <Text bold mt="2" mb={1} fontSize={12} color="coolGray.400">
               {bestService.workerName}
             </Text>
             {bestService.ratingAmount === 0 ? (
@@ -54,12 +56,12 @@ const BestServices = (props) => {
                 Chưa có đánh giá
               </Text>
             ) : (
-              <View style={{ alignItems: "flex-start", marginRight: "auto" }}>
+              <View style={{ alignItems: "flex-start", marginLeft: -5 }}>
                 <AirbnbRating
                   isDisabled={true}
                   count={5}
                   defaultRating={convertStar(bestService.rating)}
-                  size={20}
+                  size={18}
                   showRating={false}
                 />
               </View>
@@ -89,9 +91,9 @@ const BestServices = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
+    width: screenWidth * 0.75,
     marginVertical: 8,
     marginHorizontal: 8,
-    maxWidth: "100%",
   },
 });
 export default BestServices;

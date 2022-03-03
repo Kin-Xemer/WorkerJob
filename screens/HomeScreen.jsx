@@ -26,11 +26,11 @@ const HomeScreen = (props) => {
 };
 const styles = StyleSheet.create({
   homeScreen: {
-    backgroundColor: "transparent",
+    backgroundColor: "white",
   },
   container: {
     flexGrow: 1,
-    backgroundColor: "transparent",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },

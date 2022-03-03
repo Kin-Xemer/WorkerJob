@@ -8,7 +8,7 @@ const DividerFullWidth = (props) => {
       h={1}
       mt={2}
       w={screenWidth + 25}
-      bg="gray.200"
+      bg="#EFEFEF"
       orientation="horizontal"
       thickness="2"
     />

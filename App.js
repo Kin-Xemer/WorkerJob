@@ -10,7 +10,7 @@ LogBox.ignoreLogs([
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar animated={true} backgroundColor="#fff" barStyle="default" />
+      <StatusBar animated={true} backgroundColor="white" barStyle="default" />
       <NativeBaseProvider>
         <AppNavigator />
       </NativeBaseProvider>

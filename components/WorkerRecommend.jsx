@@ -37,13 +37,7 @@ const WorkerRecommend = (props) => {
       {({ isHovered, isFocused, isPressed }) => {
         return (
           <Box
-            bg={
-              isPressed
-                ? "coolGray.100"
-                : isHovered
-                ? "coolGray.100"
-                : "coolGray.100"
-            }
+            bg={"white"}
             style={{
               transform: [
                 {
@@ -51,7 +45,7 @@ const WorkerRecommend = (props) => {
                 },
               ],
             }}
-            maxH="103%"
+            h={screenHeight / 4 - 3}
             w={screenWidth / 2 - 16}
             maxW={screenWidth}
             rounded={25}
@@ -60,7 +54,15 @@ const WorkerRecommend = (props) => {
             borderWidth="1"
             mb={-1}
           >
-            <Stack pr="8" pl="8" pt="8" pb="8" space={3} direction="row">
+            <Stack
+              pr="8"
+              pl="8"
+              pt="8"
+              pb="8"
+              space={3}
+              direction="row"
+              maxHeight="100%"
+            >
               <Center>
                 <Stack space={3}>
                   <Box alignItems="center">
@@ -109,6 +111,7 @@ const WorkerRecommend = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "transparent",
     marginVertical: 8,
     marginHorizontal: 8,
     maxWidth: "100%",
