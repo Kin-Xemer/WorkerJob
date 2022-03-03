@@ -37,11 +37,6 @@ const BestServices = (props) => {
             pr={3}
             rounded="12"
             style={{
-              transform: [
-                {
-                  scale: isPressed ? 0.98 : 1,
-                },
-              ],
               backgroundColor: "white",
             }}
           >

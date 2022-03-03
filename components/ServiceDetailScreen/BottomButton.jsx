@@ -33,7 +33,7 @@ const BottomButton = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
-    padding: 14,
+    paddingBottom: 24,
     height: screenHeight * 0.095,
     width: screenWidth,
     backgroundColor: "white",

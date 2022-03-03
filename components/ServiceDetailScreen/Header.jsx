@@ -45,7 +45,7 @@ const Header = (props) => {
             Alert.alert("pressed");
           }}
         >
-          Thương lượng
+          250.000 VNĐ
         </Text>
         <Divider
           mt={1}

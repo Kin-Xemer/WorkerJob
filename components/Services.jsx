@@ -12,7 +12,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-
+import warehouse from "../assets/warehouse.png";
 const Servies = (props) => {
   const [job, setJob] = useState([
     {
@@ -34,7 +34,7 @@ const Servies = (props) => {
       id: 4,
       jobName: "Vận chuyển",
       iconImage:
-        "https://cdn-icons.flaticon.com/png/512/3061/premium/3061160.png?token=exp=1645089405~hmac=83c86674ed8b26ccb8760920a0e31649",
+        "https://cdn-icons.flaticon.com/png/512/3061/premium/3061160.png?token=exp=1646292283~hmac=d00ea930b18a3d768ae9b6ba2fbd721b",
     },
 
     {
@@ -46,7 +46,7 @@ const Servies = (props) => {
       id: 6,
       jobName: "Dọn vệ sinh",
       iconImage:
-        "https://cdn-icons.flaticon.com/png/512/4506/premium/4506495.png?token=exp=1645089597~hmac=8bd453523c4f2f2a2e915089d36d010c",
+        "https://cdn-icons.flaticon.com/png/512/4506/premium/4506495.png?token=exp=1646292635~hmac=16dfd45aad2e8057584649d01708a2b5",
     },
     {
       id: 7,

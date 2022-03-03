@@ -6,7 +6,10 @@ const Rating = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.textStyle}>Đánh giá</Text>
-      <ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
         <Text>
           <Feedback
             avatar="https://i.pinimg.com/474x/b8/51/c7/b851c7faae38111e025c757c34959f63.jpg"
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     marginRight: "auto",
     width: screenWidth,
-    height: screenHeight * 0.645,
+    height: screenHeight * 0.6,
     paddingLeft: 8,
   },
   textStyle: {

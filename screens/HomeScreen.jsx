@@ -4,6 +4,7 @@ import SearchField from "../components/SearchField";
 import Servies from "../components/Services";
 import DividerBar from "../components/DividerBar";
 import ListBestServies from "../components/ListBestServies";
+import ListVoucher from "../components/Voucher/ListVoucher";
 const HomeScreen = (props) => {
   const navigation = useNavigation();
   return (
@@ -19,7 +20,8 @@ const HomeScreen = (props) => {
         <Servies />
         <DividerBar dividerName="Dịch vụ nổi bật" />
         <ListBestServies />
-        <DividerBar dividerName="Mã giảm giá" />
+        {/* <DividerBar dividerName="Mã giảm giá" />
+        <ListVoucher /> */}
       </ScrollView>
     </View>
   );

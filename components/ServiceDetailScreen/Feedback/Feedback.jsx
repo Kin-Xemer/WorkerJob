@@ -107,13 +107,11 @@ const Feedback = (props) => {
               </Center>
             </Flex>
           </Flex>
-          <Text fontSize={15}>{comment}</Text>
-          <HStack alignItems="center" space={4} justifyContent="space-between">
-            <HStack alignItems="center">
-              <Text color="coolGray.400" fontWeight="400">
-                15/2/2022
-              </Text>
-            </HStack>
+          {comment ? <Text fontSize={15}>{comment}</Text> : null}
+          <HStack alignItems="center">
+            <Text color="coolGray.400" fontWeight="400">
+              15/2/2022
+            </Text>
           </HStack>
         </Stack>
       </Box>
