@@ -6,11 +6,12 @@ import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const BestServices = (props) => {
-  const { bestService } = props;
+  const { bestService, width } = props;
   const route = useRoute();
   const navigation = useNavigation();
   return (
     <Pressable
+      width={width}
       style={styles.container}
       onPress={() => {
         navigation.navigate("ServiceDetailScreen", {
@@ -21,7 +22,7 @@ const BestServices = (props) => {
       {({ isHovered, isFocused, isPressed }) => {
         return (
           <Box
-            maxW={screenWidth * 0.75}
+            maxW={screenWidth}
             borderWidth="0.7"
             borderColor="coolGray.300"
             bg={
@@ -53,6 +54,7 @@ const BestServices = (props) => {
             ) : (
               <View style={{ alignItems: "flex-start", marginLeft: -5 }}>
                 <AirbnbRating
+                  selectedColor="gold"
                   isDisabled={true}
                   count={5}
                   defaultRating={convertStar(bestService.rating)}
@@ -73,7 +75,7 @@ const BestServices = (props) => {
               </Text>
               <Spacer />
               <Button colorScheme="rgb(2, 178, 185)" size="xs">
-                <Text fontWeight="thin" pr={8} pl={8}>
+                <Text fontWeight="thin" pr={8} pl={8} color="#fff">
                   LẤY BÁO GIÁ
                 </Text>
               </Button>
@@ -86,7 +88,6 @@ const BestServices = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
-    width: screenWidth * 0.75,
     marginVertical: 8,
     marginHorizontal: 8,
   },

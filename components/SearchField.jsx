@@ -4,12 +4,26 @@ import { View, StyleSheet, ImageBackground, Image } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Input, Icon } from "native-base";
 import posterImg from "../assets/posterWJ2.jpg";
+
 const SearchField = (props) => {
+  const [background, setBackground] = useState("#f0f0f0");
+  const [textCheck, setTextCheck] = useState("");
+
+  useEffect(() => {
+    console.log("useEffect is called");
+  }, [textCheck]);
+  const change = (textCheck) => {
+    console.log(textCheck);
+  };
+  const blur = () => {
+    setBackground("#02b2b9");
+  };
   return (
     <View style={styles.searchField}>
       <Image style={styles.backgroundShape} source={posterImg}></Image>
       <View style={styles.inputStyle}>
         <Input
+          onChangeText={(text) => setTextCheck(text)}
           w={500}
           pt={4}
           pb={4}

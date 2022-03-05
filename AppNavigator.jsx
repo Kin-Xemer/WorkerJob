@@ -16,6 +16,7 @@ import Home from "./screens/HomeScreen";
 import ServicesRecommend from "./screens/ServicesRecommend";
 import WorkerInformation from "./screens/WorkerInformation";
 import ServiceDetailScreen from "./screens/ServiceDetailScreen";
+import SearchScreen from "./screens/SearchScreen";
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const AppNavigator = () => {
@@ -28,6 +29,7 @@ const AppNavigator = () => {
         headerTitleAlign: "center",
       }}
     >
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="TabNaviHome" component={TabNavigator} />
       <Stack.Screen
         name="ServiceDetailScreen"

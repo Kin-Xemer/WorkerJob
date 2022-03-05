@@ -58,7 +58,7 @@ const ListWorkerRecommend = (props) => {
         },
       ],
       ratingAmount: 50,
-      avt: "https://cdn-icons.flaticon.com/png/128/2202/premium/2202112.png?token=exp=1645553516~hmac=bade330b13f542f9ad8122bbda8527c6",
+      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154461.png",
       minPrice: 150000,
     },
     {
@@ -85,7 +85,7 @@ const ListWorkerRecommend = (props) => {
         },
       ],
       ratingAmount: 25,
-      avt: "https://cdn-icons.flaticon.com/png/128/706/premium/706830.png?token=exp=1645553516~hmac=bb87476a18db476154fb8aba8e5820d7",
+      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154434.png",
       minPrice: 90000,
     },
     {
@@ -112,7 +112,7 @@ const ListWorkerRecommend = (props) => {
         },
       ],
       ratingAmount: 20,
-      avt: "https://cdn-icons.flaticon.com/png/128/4140/premium/4140048.png?token=exp=1645553516~hmac=3699219c52d5900e8c5c736a1907be87",
+      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154466.png",
       minPrice: 150000,
     },
     {
@@ -228,7 +228,7 @@ const ListWorkerRecommend = (props) => {
         },
       ],
       ratingAmount: 42,
-      avt: "https://cdn-icons.flaticon.com/png/128/706/premium/706821.png?token=exp=1645553516~hmac=6a9a20665e58ba1bb512979e4d18f0dc",
+      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154470.png",
       minPrice: 300000,
     },
     {
@@ -255,7 +255,7 @@ const ListWorkerRecommend = (props) => {
         },
       ],
       ratingAmount: 12,
-      avt: "https://cdn-icons.flaticon.com/png/128/4140/premium/4140051.png?token=exp=1645556158~hmac=31d9c9bf6949e3d3cbc9c1ecfcea2e45",
+      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154449.png",
       minPrice: 200000,
     },
     {
@@ -282,7 +282,7 @@ const ListWorkerRecommend = (props) => {
         },
       ],
       ratingAmount: 15,
-      avt: "https://cdn-icons.flaticon.com/png/512/706/premium/706835.png?token=exp=1645556272~hmac=f591464279158611b864bffe99e5bfb5",
+      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154448.png",
       minPrice: 90000,
     },
     {
@@ -309,7 +309,7 @@ const ListWorkerRecommend = (props) => {
         },
       ],
       ratingAmount: 15,
-      avt: "https://cdn-icons.flaticon.com/png/128/706/premium/706799.png?token=exp=1645556272~hmac=4388edebd4c0bc7447bcf7e1e3c6c040",
+      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154455.png",
       minPrice: 250000,
     },
     {
@@ -336,7 +336,7 @@ const ListWorkerRecommend = (props) => {
         },
       ],
       ratingAmount: 15,
-      avt: "https://cdn-icons.flaticon.com/png/128/4140/premium/4140046.png?token=exp=1645559670~hmac=0ac41214cd69659cbcbea8a403a49aa2",
+      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154469.png",
       minPrice: 45000,
     },
   ]);

@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
-import {
-  View,
-  ScrollView,
-  FlatList,
-  Dimensions,
-  StyleSheet,
-} from "react-native";
-import BestServices from "./BestServices";
+import { View, Text, StyleSheet, FlatList, Dimensions } from "react-native";
+import BestServices from "../BestServices";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
-const ListBestServies = (props) => {
+const SearchResult = (props) => {
+  const { searchValue } = props;
   const [bestService, setBestService] = useState([
     {
       id: 1,
@@ -144,49 +139,25 @@ const ListBestServies = (props) => {
       avt: "https://cdn-icons-png.flaticon.com/512/1154/1154469.png",
     },
   ]);
-  const windowWidth = Dimensions.get("window").width;
+
   return (
     <View style={styles.container}>
-      <ScrollView
-        nestedScrollEnabled={true}
-        snapToInterval={1}
-        decelerationRate="fast"
-        snapToAlignment="center"
-        horizontal
+      <FlatList
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{
-          backgroundColor: "transparent",
-        }}
-      >
-        <FlatList
-          scrollEnabled={false}
-          contentContainerStyle={{
-            alignSelf: "flex-start",
-          }}
-          numColumns={Math.ceil(bestService.length / 2)}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          data={bestService}
-          renderItem={({ item }) => (
-            <BestServices bestService={item} width={screenWidth * 0.75} />
-          )}
-          keyExtractor={(item) => `${item.id}`}
-          contentContainerStyle={{ paddingLeft: 3, paddingRight: "auto" }}
-        />
-      </ScrollView>
+        data={bestService}
+        renderItem={({ item }) => (
+          <BestServices bestService={item} width={screenWidth * 0.9} />
+        )}
+        keyExtractor={(item) => `${item.id}`}
+      />
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "transparent",
-    alignItems: "stretch",
+    alignItems: "center",
     justifyContent: "center",
-    paddingTop: 10,
-    marginRight: "auto",
-    maxWidth: "100%",
   },
 });
-export default ListBestServies;
+export default SearchResult;
