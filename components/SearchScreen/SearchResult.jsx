@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Dimensions } from "react-native";
 import BestServices from "../BestServices";
+import ButtonToggleGroup from "react-native-button-toggle-group";
+import DividerFullWidth from "../DividerFullWidth";
+import ButtonGroup from "../ButtonGroup";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const SearchResult = (props) => {
+  const [valueButton, setValueButton] = useState("Liên quan");
   const { searchValue } = props;
-  useEffect(() => {
-    listResultSearchValue(searchValue);
-  }, [searchValue]);
-  useEffect(() => {}, [searchValue]);
   var [listResultSearch, setListResultSearch] = useState([]);
   const [bestService, setBestService] = useState([
     {
@@ -162,6 +162,10 @@ const SearchResult = (props) => {
     str = str.toLowerCase();
     return str;
   };
+  useEffect(() => {
+    listResultSearchValue(searchValue);
+  }, [searchValue]);
+
   var listResult = [];
   const listResultSearchValue = () => {
     for (let i = 0; i < bestService.length; i++) {
@@ -173,24 +177,54 @@ const SearchResult = (props) => {
     }
     setListResultSearch(listResult);
   };
+  const checkButton = (value) => {
+    console.log(value);
+  };
   return (
     <View style={styles.container}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        data={listResultSearch}
-        renderItem={({ item }) => (
-          <BestServices bestService={item} width={screenWidth * 0.9} />
-        )}
-        keyExtractor={(item) => `${item.id}`}
-      />
+      <View style={styles.viewGroupButton}>
+        <View>
+          <DividerFullWidth />
+        </View>
+        <ButtonGroup
+          highlightBackgroundColor={"transparent"}
+          highlightTextColor={"#02b2b9"}
+          inactiveBackgroundColor={"transparent"}
+          inactiveTextColor={"grey"}
+          textStyle={{ fontSize: 15 }}
+          values={["Liên quan", "Gần nhất", "Giá", "Đánh giá"]}
+          value={valueButton}
+          onSelect={(val) => {
+            checkButton(val);
+            setValueButton(val);
+          }}
+        />
+      </View>
+      <View style={{ marginTop: 8 }}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          data={listResultSearch}
+          renderItem={({ item }) => (
+            <BestServices bestService={item} width={screenWidth * 0.94} />
+          )}
+          keyExtractor={(item) => `${item.id}`}
+        />
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
+    marginTop: 16,
     alignItems: "center",
     justifyContent: "center",
+  },
+  viewGroupButton: {
+    marginTop: 35,
+    justifyContent: "center",
+    height: 64,
+    width: screenWidth,
   },
 });
 export default SearchResult;

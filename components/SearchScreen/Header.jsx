@@ -68,11 +68,10 @@ const Header = (props) => {
 };
 const styles = StyleSheet.create({
   textInput: {
-    marginBottom: 12,
     marginTop: 12,
     height: 45,
     borderRadius: 30,
-    width: screenWidth * 0.9,
+    width: screenWidth * 0.94,
     backgroundColor: "#f0f0f0",
   },
   container: {
