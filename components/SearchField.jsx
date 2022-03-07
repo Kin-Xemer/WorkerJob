@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { View, StyleSheet, ImageBackground, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  Image,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Input, Icon } from "native-base";
 import posterImg from "../assets/posterWJ2.jpg";
 
 const SearchField = (props) => {
+  const navigation = useNavigation();
   const [background, setBackground] = useState("#f0f0f0");
-  const [textCheck, setTextCheck] = useState("");
-
-  useEffect(() => {
-    console.log("useEffect is called");
-  }, [textCheck]);
   const change = (textCheck) => {
     console.log(textCheck);
   };
@@ -21,25 +23,27 @@ const SearchField = (props) => {
   return (
     <View style={styles.searchField}>
       <Image style={styles.backgroundShape} source={posterImg}></Image>
-      <View style={styles.inputStyle}>
-        <Input
-          onChangeText={(text) => setTextCheck(text)}
-          w={500}
-          pt={4}
-          pb={4}
-          size="lg"
-          borderWidth={0}
-          InputLeftElement={
-            <Icon
-              as={<MaterialIcons name="search" />}
-              size={8}
-              ml="2"
-              color="#02b2b9"
-            />
-          }
-          placeholder="Tìm từ khóa"
-        />
-      </View>
+      <TouchableWithoutFeedback onPress={() => navigation.push("SearchScreen")}>
+        <View style={styles.inputStyle}>
+          <Input
+            editable={false}
+            w={500}
+            pt={4}
+            pb={4}
+            size="lg"
+            borderWidth={0}
+            InputLeftElement={
+              <Icon
+                as={<MaterialIcons name="search" />}
+                size={8}
+                ml="2"
+                color="#02b2b9"
+              />
+            }
+            placeholder="Tìm từ khóa"
+          />
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };

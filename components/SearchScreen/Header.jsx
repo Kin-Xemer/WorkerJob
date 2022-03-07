@@ -10,23 +10,27 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { SearchBar } from "react-native-elements";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Input, Icon } from "native-base";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const Context = createContext();
 const Header = (props) => {
-  const { resultProps } = props;
+  let { resultProps, setSearchResult } = props;
   const navigation = useNavigation();
   const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
-    console.log(searchValue);
+    resultProps = searchValue;
+    console.log(resultProps);
   }, [searchValue]);
-
+  const inputRef = useRef(false);
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback
-        onPress={() => navigation.navigate("TabNaviHome")}
-      >
+      <TouchableWithoutFeedback onPress={() => navigation.navigate("Home")}>
         <View style={styles.backIconButton}>
           <IconButton
             disabled={true}
@@ -41,13 +45,12 @@ const Header = (props) => {
       </View>
       <View style={styles.textInput}>
         <Input
-          value={searchValue}
+          ref={inputRef}
           mt={0.5}
           size="xl"
           borderWidth={0}
           onChangeText={(text) => {
-            () => checkResult();
-            setSearchValue(text);
+            setSearchResult(text);
           }}
           InputLeftElement={
             <Icon
@@ -65,6 +68,7 @@ const Header = (props) => {
 };
 const styles = StyleSheet.create({
   textInput: {
+    marginBottom: 12,
     marginTop: 12,
     height: 45,
     borderRadius: 30,

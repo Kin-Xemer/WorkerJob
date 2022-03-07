@@ -29,7 +29,6 @@ const AppNavigator = () => {
         headerTitleAlign: "center",
       }}
     >
-      <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="TabNaviHome" component={TabNavigator} />
       <Stack.Screen
         name="ServiceDetailScreen"
@@ -48,6 +47,7 @@ const HomeScreen = () => {
         headerTitleAlign: "center",
       }}
     >
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="ServicesRecommend" component={ServicesRecommend} />
       <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
