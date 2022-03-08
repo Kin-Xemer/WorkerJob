@@ -5,14 +5,16 @@ import ServiceDescription from "../components/ServiceDetailScreen/ServiceDescrip
 import BottomButton from "../components/ServiceDetailScreen/BottomButton";
 import { Pressable, Box, Button, Text, Flex, Spacer } from "native-base";
 import { StatusBar } from "expo-status-bar";
+import { useRoute } from "@react-navigation/native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const ServiceDetailScreen = (props) => {
+  const route = useRoute();
   return (
     <Flex direction="column" style={styles.container}>
       <StatusBar animated={true} backgroundColor="#f0f0f0" barStyle="default" />
-      <Header />
-      <ServiceDescription />
-      <Rating />
+      <Header bestService={route.params.bestService} />
+      <ServiceDescription bestService={route.params.bestService} />
+      <Rating bestService={route.params.bestService} />
       <Spacer />
       <BottomButton style={styles.bottomButton} />
     </Flex>

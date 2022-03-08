@@ -17,9 +17,15 @@ import { AntDesign, Feather } from "@expo/vector-icons";
 import OptionsMenu from "react-native-option-menu";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const Feedback = (props) => {
-  const { userName, rate, like, avatar, comment } = props;
+  let { userName, rate, like, avatar, comment } = props;
   const [isLiked, setIsLiked] = useState(false);
+  const [likeAmount, setLikeAmount] = useState(like);
   const toggleSwitch = () => {
+    if (!isLiked) {
+      setLikeAmount(like + 1);
+    } else {
+      setLikeAmount(like);
+    }
     setIsLiked((previousState) => !previousState);
   };
   return (
@@ -74,7 +80,7 @@ const Feedback = (props) => {
                   marginTop: 4,
                 }}
               >
-                <Text fontSize={14}>{like}</Text>
+                <Text fontSize={14}>{likeAmount}</Text>
               </Box>
               <Center style={{ marginRight: 16 }}>
                 <TouchableOpacity

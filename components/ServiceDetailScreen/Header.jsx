@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import DividerFullWidth from "../DividerFullWidth";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const Header = (props) => {
+  const { bestService } = props;
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -21,7 +22,7 @@ const Header = (props) => {
         />
       </View>
       <View>
-        <Text style={styles.textStyle}>Sửa chữa máy lạnh điện lạnh</Text>
+        <Text style={styles.textStyle}>{bestService.serviceName}</Text>
       </View>
       <Flex direction="row" paddingTop={2}>
         <Text
@@ -31,7 +32,7 @@ const Header = (props) => {
             Alert.alert("pressed");
           }}
         >
-          Nguyễn Mạnh Kiên
+          {bestService.workerName}
         </Text>
         <MaterialIcons name="navigate-next" size={18} color="gray" />
       </Flex>
@@ -45,7 +46,7 @@ const Header = (props) => {
             Alert.alert("pressed");
           }}
         >
-          250.000 VNĐ
+          {bestService.price / 1000}.000 VNĐ
         </Text>
         <Divider
           mt={1}
@@ -58,7 +59,8 @@ const Header = (props) => {
         <Flex direction="row">
           <Text mt={1} fontSize={18} width={screenWidth / 4}>
             {" "}
-            <AntDesign name="star" size={18} color="#02b2b9" /> 4.86/5
+            <AntDesign name="star" size={18} color="#02b2b9" />{" "}
+            {bestService.rating}/5
           </Text>
           <View style={styles.heartStyle}>
             <AntDesign
