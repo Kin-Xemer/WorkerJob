@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Box, Center, Flex, VStack } from "native-base";
+import { Box, Center, Flex, VStack, Spacer } from "native-base";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import HeaderBar from "../components/InformationScreen/HeaderBar";
+import BottomButton from "../components/ServiceDetailScreen/BottomButton";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const WorkerInformation = (props) => {
   const route = useRoute();
@@ -38,15 +39,21 @@ const WorkerInformation = (props) => {
           </Center>
         </Flex>
       </Box>
+      <View
+        style={{
+          position: "absolute",
+          marginBottom: 25,
+          height: screenHeight + 20,
+          flex: 1,
+          justifyContent: "flex-end",
+        }}
+      >
+        <BottomButton />
+      </View>
     </VStack>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "red",
-    alignItems: "center",
-  },
   header: {
     backgroundColor: "#02b2b9",
     height: 200,

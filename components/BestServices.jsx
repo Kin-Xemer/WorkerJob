@@ -64,15 +64,27 @@ const BestServices = (props) => {
               </View>
             )}
             <Flex direction="row">
-              <Text
-                mt="2"
-                pr="8"
-                fontSize={20}
-                fontWeight="bold"
-                color="#FF6347"
-              >
-                {bestService.price / 1000} K
-              </Text>
+              {bestService.price === 0 ? (
+                <Text
+                  mt="2"
+                  pr="8"
+                  fontSize={20}
+                  fontWeight="bold"
+                  color="#FF6347"
+                >
+                  Thương Lượng
+                </Text>
+              ) : (
+                <Text
+                  mt="2"
+                  pr="8"
+                  fontSize={20}
+                  fontWeight="bold"
+                  color="#FF6347"
+                >
+                  {bestService.price / 1000}.000 VNĐ
+                </Text>
+              )}
               <Spacer />
               <Button colorScheme="rgb(2, 178, 185)" size="xs">
                 <Text fontWeight="thin" pr={8} pl={8} color="#fff">

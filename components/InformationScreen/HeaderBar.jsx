@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   headerBar: {
     width: screenWidth,
-    marginTop: 32,
+    marginTop: 25,
     zIndex: 1,
     position: "absolute",
     backgroundColor: "transparent",

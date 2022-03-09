@@ -85,6 +85,8 @@ const Servies = (props) => {
           scrollEnabled={false}
           contentContainerStyle={{
             alignSelf: "flex-start",
+            paddingLeft: 10,
+            paddingRight: "auto",
           }}
           numColumns={Math.ceil(job.length / 2)}
           showsVerticalScrollIndicator={false}
@@ -112,7 +114,6 @@ const Servies = (props) => {
             </TouchableOpacity>
           )}
           keyExtractor={(item) => `${item.id}`}
-          contentContainerStyle={{ paddingLeft: 10, paddingRight: "auto" }}
         />
       </ScrollView>
     </View>

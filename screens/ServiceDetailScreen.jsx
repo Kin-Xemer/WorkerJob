@@ -6,17 +6,19 @@ import BottomButton from "../components/ServiceDetailScreen/BottomButton";
 import { Pressable, Box, Button, Text, Flex, Spacer } from "native-base";
 import { StatusBar } from "expo-status-bar";
 import { useRoute } from "@react-navigation/native";
+import { useState, useEffect, useRef } from "react";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const ServiceDetailScreen = (props) => {
   const route = useRoute();
+  const [bestService, setBestService] = useState(route.params.bestService);
   return (
     <Flex direction="column" style={styles.container}>
       <StatusBar animated={true} backgroundColor="#f0f0f0" barStyle="default" />
-      <Header bestService={route.params.bestService} />
-      <ServiceDescription bestService={route.params.bestService} />
-      <Rating bestService={route.params.bestService} />
+      <Header bestService={bestService} />
+      <ServiceDescription bestService={bestService} />
+      <Rating bestService={bestService} />
       <Spacer />
-      <BottomButton style={styles.bottomButton} />
+      <BottomButton />
     </Flex>
   );
 };
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     justifyContent: "flex-start",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
 });
 export default ServiceDetailScreen;

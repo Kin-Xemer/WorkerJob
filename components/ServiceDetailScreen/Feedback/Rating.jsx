@@ -75,12 +75,12 @@ const Rating = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "flex-start",
-    backgroundColor: "transparent",
+    backgroundColor: "white",
     justifyContent: "flex-start",
     paddingTop: 8,
     marginRight: "auto",
     width: screenWidth,
-    height: screenHeight * 0.6,
+    height: screenHeight * 0.635,
     paddingLeft: 8,
   },
   textStyle: {

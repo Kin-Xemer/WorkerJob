@@ -65,7 +65,7 @@ const SearchResult = (props) => {
       rating: 4.75,
       jobId: 4,
       serviceName: "Chuyển nhà , đồ đạc",
-      price: 240000,
+      price: 0,
       ratingAmount: 16,
       avt: "https://cdn-icons-png.flaticon.com/512/1154/1154468.png",
       description: "Nhận dịch vụ chuyển trọ, chuyển nhà cửa",
@@ -77,7 +77,7 @@ const SearchResult = (props) => {
       rating: 4.96,
       jobId: 8,
       serviceName: "Sửa khóa, đánh khóa",
-      price: 240000,
+      price: 0,
       ratingAmount: 16,
       avt: "https://cdn-icons-png.flaticon.com/512/1154/1154459.png",
       description: "Sủa khóa, làm chìa, phá khóa nhà cửa",
@@ -101,7 +101,7 @@ const SearchResult = (props) => {
       rating: 4.76,
       jobId: 3,
       serviceName: "Lắp đặt camera",
-      price: 240000,
+      price: 0,
       ratingAmount: 42,
       avt: "https://cdn-icons-png.flaticon.com/512/1154/1154470.png",
       description: "Lắp đặt cấu hình modem, camera",
@@ -138,7 +138,7 @@ const SearchResult = (props) => {
       rating: 4.85,
       jobId: 3,
       serviceName: "Sửa điện thoại, laptop",
-      price: 500000,
+      price: 0,
       ratingAmount: 15,
       avt: "https://cdn-icons-png.flaticon.com/512/1154/1154455.png",
       description: "Thay pin, thay màn hình, sửa nguồn, sửa main",
@@ -212,7 +212,7 @@ const SearchResult = (props) => {
           }}
         />
       </View>
-      <View style={{ marginTop: 8, height: screenHeight * 0.7 }}>
+      <View style={{ marginTop: 8, height: screenHeight * 0.73 }}>
         <FlatList
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}

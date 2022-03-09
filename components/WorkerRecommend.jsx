@@ -18,6 +18,7 @@ import {
   Dimensions,
   StyleSheet,
 } from "react-native";
+import { convertStar } from "../Utils/convertStar";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Rating, AirbnbRating } from "react-native-ratings";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
@@ -37,7 +38,6 @@ const WorkerRecommend = (props) => {
       {({ isHovered, isFocused, isPressed }) => {
         return (
           <Box
-            bg={"white"}
             style={{
               transform: [
                 {
@@ -45,7 +45,7 @@ const WorkerRecommend = (props) => {
                 },
               ],
             }}
-            h={screenHeight / 4 - 3}
+            h={screenHeight / 4 - 8}
             w={screenWidth / 2 - 16}
             maxW={screenWidth}
             rounded={25}
@@ -88,17 +88,25 @@ const WorkerRecommend = (props) => {
                         style={{ alignItems: "center", marginRight: "auto" }}
                       >
                         <AirbnbRating
+                          selectedColor="gold"
+                          isDisabled={true}
                           count={5}
-                          defaultRating={worker.rating}
+                          defaultRating={convertStar(worker.rating)}
                           size={20}
                           showRating={false}
                         />
                       </View>
                     )}
-                    <Text fontWeight="bold" marginBottom={2}>
-                      <Text fontWeight="normal">Giá từ: </Text>
-                      {worker.minPrice / 1000} K
-                    </Text>
+                    {worker.minPrice === 0 ? (
+                      <Text fontWeight="bold" marginBottom={2}>
+                        <Text fontWeight="bold">Giá thương lượng </Text>
+                      </Text>
+                    ) : (
+                      <Text fontWeight="bold" marginBottom={2}>
+                        <Text fontWeight="normal">Giá từ: </Text>
+                        {worker.minPrice / 1000}.000 VNĐ
+                      </Text>
+                    )}
                   </Stack>
                 </Stack>
               </Center>

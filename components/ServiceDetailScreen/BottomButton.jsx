@@ -33,14 +33,14 @@ const BottomButton = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 24,
-    height: screenHeight * 0.095,
+    height: screenHeight * 0.09,
     width: screenWidth,
     backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "center",
   },
   groupButton: {
+    paddingBottom: 15,
     flexDirection: "row",
   },
   buttonStyle: {

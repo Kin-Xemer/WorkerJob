@@ -34,6 +34,7 @@ const AppNavigator = () => {
         name="ServiceDetailScreen"
         component={ServiceDetailScreen}
       />
+      <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
     </Stack.Navigator>
   );
 };
@@ -50,7 +51,6 @@ const HomeScreen = () => {
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="ServicesRecommend" component={ServicesRecommend} />
-      <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
     </Stack.Navigator>
   );
 };

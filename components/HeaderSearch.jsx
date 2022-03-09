@@ -1,6 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -26,26 +31,31 @@ const HeaderSearch = (props) => {
             }
           />
         </View>
-        <View>
-          <SearchBar
-            inputContainerStyle={{
-              height: "auto",
-              backgroundColor: "#f0f0f0",
-              maxWidth: "100%",
-              borderRadius: 20,
-            }}
-            containerStyle={{
-              height: "auto",
-              borderBottomWidth: 0,
-              borderTopWidth: 0,
-              backgroundColor: "transparent",
-              borderRadius: 20,
-              width: windowWidth - 50,
-            }}
-            placeholderTextColor={"gray"}
-            placeholder={"Tìm từ khóa"}
-          />
-        </View>
+        <TouchableWithoutFeedback
+          onPress={() => navigation.push("SearchScreen2")}
+        >
+          <View>
+            <SearchBar
+              editable={false}
+              inputContainerStyle={{
+                height: "auto",
+                backgroundColor: "#f0f0f0",
+                maxWidth: "100%",
+                borderRadius: 20,
+              }}
+              containerStyle={{
+                height: "auto",
+                borderBottomWidth: 0,
+                borderTopWidth: 0,
+                backgroundColor: "transparent",
+                borderRadius: 20,
+                width: windowWidth - 50,
+              }}
+              placeholderTextColor={"gray"}
+              placeholder={"Tìm từ khóa"}
+            />
+          </View>
+        </TouchableWithoutFeedback>
       </Flex>
     </View>
   );
