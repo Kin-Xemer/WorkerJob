@@ -45,7 +45,7 @@ const WorkerRecommend = (props) => {
                 },
               ],
             }}
-            h={screenHeight / 4 - 8}
+            h={screenHeight / 4 - 20}
             w={screenWidth / 2 - 16}
             maxW={screenWidth}
             rounded={25}

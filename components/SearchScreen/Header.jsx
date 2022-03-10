@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textStyleHeader: {
-    fontWeight: "bold",
     fontSize: 20,
+    fontFamily: "OpenSans-SemiBold",
   },
 });
 export default Header;

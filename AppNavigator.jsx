@@ -15,6 +15,7 @@ import {
 import Home from "./screens/HomeScreen";
 import ServicesRecommend from "./screens/ServicesRecommend";
 import WorkerInformation from "./screens/WorkerInformation";
+import RequestOrderScreen from "./screens/RequestOrderScreen";
 import ServiceDetailScreen from "./screens/ServiceDetailScreen";
 import SearchScreen from "./screens/SearchScreen";
 const Stack = createStackNavigator();
@@ -34,6 +35,7 @@ const AppNavigator = () => {
         name="ServiceDetailScreen"
         component={ServiceDetailScreen}
       />
+      <Stack.Screen name="RequestOrderScreen" component={RequestOrderScreen} />
       <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
     </Stack.Navigator>
   );
@@ -49,8 +51,8 @@ const HomeScreen = () => {
       }}
     >
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
-      <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="ServicesRecommend" component={ServicesRecommend} />
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 };

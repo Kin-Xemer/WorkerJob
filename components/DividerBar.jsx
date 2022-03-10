@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     paddingLeft: 1,
     fontSize: 20,
-    fontWeight: "bold",
     textTransform: "uppercase",
+    fontFamily: "OpenSans-Bold",
   },
 });
 export default DividerBar;

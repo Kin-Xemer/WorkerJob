@@ -183,7 +183,7 @@ const ListBestServies = (props) => {
           showsHorizontalScrollIndicator={false}
           data={bestService}
           renderItem={({ item }) => (
-            <BestServices bestService={item} width={screenWidth * 0.75} />
+            <BestServices bestService={item} width={screenWidth * 0.8} />
           )}
           keyExtractor={(item) => `${item.id}`}
         />

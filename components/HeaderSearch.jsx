@@ -32,7 +32,7 @@ const HeaderSearch = (props) => {
           />
         </View>
         <TouchableWithoutFeedback
-          onPress={() => navigation.push("SearchScreen2")}
+          onPress={() => navigation.push("SearchScreen")}
         >
           <View>
             <SearchBar

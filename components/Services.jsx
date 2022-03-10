@@ -108,7 +108,9 @@ const Servies = (props) => {
                   source={{ uri: item.iconImage }}
                 />
                 <View style={styles.jobTitle}>
-                  <Text>{item.jobName}</Text>
+                  <Text style={{ fontFamily: "OpenSans-Regular" }}>
+                    {item.jobName}
+                  </Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -138,6 +140,7 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     maxWidth: 68,
+    fontFamily: "OpenSans-Light",
   },
 });
 export default Servies;

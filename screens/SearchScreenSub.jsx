@@ -6,7 +6,7 @@ import Header from "../components/SearchScreen/Header";
 import Finder from "../assets/Finder.png";
 import SearchResult from "../components/SearchScreen/SearchResult";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
-const SearchScreen = (props) => {
+const SearchScreenSub = (props) => {
   const [searchResult, setSearchResult] = useState("");
   return (
     <View style={styles.container}>
@@ -23,14 +23,7 @@ const SearchScreen = (props) => {
           }}
         >
           <Image source={Finder} style={{ width: 128, height: 128 }} />
-          <Text
-            style={{
-              marginTop: 16,
-              fontSize: 16,
-              color: "gray",
-              fontFamily: "OpenSans-Light",
-            }}
-          >
+          <Text style={{ marginTop: 16, fontSize: 16, color: "gray" }}>
             Nhập một vài từ để tìm kiếm WorkerJob nhé.{" "}
           </Text>
         </View>
@@ -55,4 +48,4 @@ const styles = StyleSheet.create({
     width: 40,
   },
 });
-export default SearchScreen;
+export default SearchScreenSub;

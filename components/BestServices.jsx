@@ -86,7 +86,15 @@ const BestServices = (props) => {
                 </Text>
               )}
               <Spacer />
-              <Button colorScheme="rgb(2, 178, 185)" size="xs">
+              <Button
+                colorScheme="rgb(2, 178, 185)"
+                size="xs"
+                onPress={() => {
+                  navigation.navigate("RequestOrderScreen", {
+                    bestService: bestService,
+                  });
+                }}
+              >
                 <Text fontWeight="thin" pr={8} pl={8} color="#fff">
                   LẤY BÁO GIÁ
                 </Text>

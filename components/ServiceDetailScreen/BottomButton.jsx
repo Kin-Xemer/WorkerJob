@@ -5,9 +5,11 @@ import {
   Text,
   TouchableWithoutFeedback,
 } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const BottomButton = (props) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.groupButton}>
@@ -22,7 +24,9 @@ const BottomButton = (props) => {
             <Text>CHAT NGAY</Text>
           </View>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate("RequestOrderScreen")}
+        >
           <View backgroundColor="#02b2b9" style={styles.buttonStyle}>
             <Text style={styles.textPrice}>LẤY BÁO GIÁ</Text>
           </View>
