@@ -16,6 +16,7 @@ import Home from "./screens/HomeScreen";
 import ServicesRecommend from "./screens/ServicesRecommend";
 import WorkerInformation from "./screens/WorkerInformation";
 import RequestOrderScreen from "./screens/RequestOrderScreen";
+import RequestDetailScreen from "./screens/RequestDetailScreen";
 import ServiceDetailScreen from "./screens/ServiceDetailScreen";
 import SearchScreen from "./screens/SearchScreen";
 const Stack = createStackNavigator();
@@ -36,6 +37,10 @@ const AppNavigator = () => {
         component={ServiceDetailScreen}
       />
       <Stack.Screen name="RequestOrderScreen" component={RequestOrderScreen} />
+      <Stack.Screen
+        name="RequestDetailScreen"
+        component={RequestDetailScreen}
+      />
       <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
     </Stack.Navigator>
   );

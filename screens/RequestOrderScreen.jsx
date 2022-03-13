@@ -4,8 +4,9 @@ import {
   Dimensions,
   Text,
   TouchableWithoutFeedback,
+  ScrollView,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   VStack,
@@ -16,6 +17,9 @@ import {
   Button,
   IconButton,
   Flex,
+  TextArea,
+  Stack,
+  Spacer,
 } from "native-base";
 import { getJobNameById } from "../Utils/jobName.js";
 import {
@@ -31,13 +35,89 @@ const RequestOrderScreen = (props) => {
   const route = useRoute();
   const navigation = useNavigation();
   const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState("date");
-  const [show, setShow] = useState(false);
+  const [dateObject, setDateObject] = useState({
+    day: "",
+    month: "",
+    year: "",
+    hour: "",
+    minute: "",
+  });
+  const [showDate, setShowDate] = useState(false);
+  const [showTime, setShowTime] = useState(false);
+  const [isSelectedDate, setIsSelectedDate] = useState(false);
+  const [isSelectedTime, setIsSelectedTime] = useState(false);
+  const [isBlank, setIsBlank] = useState(false);
   const [bestService, setBestService] = useState(route.params.bestService);
   const [formData, setData] = useState({
     jobName: getJobNameById(bestService.jobId),
     serviceName: bestService.serviceName,
+    location: "",
+    note: "",
   });
+  useEffect(() => {
+    getDayMonthYear();
+    addDateObjectToFormData();
+    checkBlank();
+  }, [
+    date,
+    formData.location,
+    dateObject.day,
+    dateObject.hour,
+    dateObject.month,
+    dateObject.minute,
+  ]);
+
+  const checkBlank = () => {
+    if (isSelectedDate && isSelectedTime && formData.location !== "") {
+      setIsBlank(true);
+    } else {
+      setIsBlank(false);
+    }
+  };
+
+  const addDateObjectToFormData = () => {
+    setData({ ...formData, date: dateObject });
+  };
+  const getDayMonthYear = () => {
+    var day, month, year, hour, minute;
+    day = date.getDate();
+    month = date.getMonth() + 1;
+    year = date.getFullYear();
+    hour = date.getHours();
+    minute = date.getMinutes();
+    if (hour == 0) {
+      hour = "00";
+    } else if (hour > 0 && hour < 10) {
+      hour = "0" + hour;
+    }
+
+    if (minute == 0) {
+      minute = "00";
+    } else if (minute > 0 && minute < 10) {
+      minute = "0" + minute;
+    }
+    setDateObject({
+      ...dateObject,
+      day: day,
+      month: month,
+      year: year,
+      hour: hour,
+      minute: minute,
+    });
+    // console.log(
+    //   "day:" +
+    //     day +
+    //     " month:" +
+    //     month +
+    //     " year:" +
+    //     year +
+    //     " Hour:" +
+    //     hour +
+    //     " minute:" +
+    //     minute
+    // );
+  };
+
   const [errors, setErrors] = useState({});
   // const validate = () => {
   //   if (formData.serviceName === undefined) {
@@ -50,23 +130,26 @@ const RequestOrderScreen = (props) => {
 
   //   return true;
   // };
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate;
-    setShow(false);
-    setDate(currentDate);
+  const onChangeDate = (event, selectedDate) => {
+    setShowDate(false);
+    setShowTime(false);
+    setDate(selectedDate);
+    setIsSelectedDate(true);
+    // getDayMonthYear(selectedDate);
   };
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
+  const onChangeTime = (event, selectedTime) => {
+    setShowDate(false);
+    setShowTime(false);
+    setDate(selectedTime);
+    setIsSelectedTime(true);
   };
-
   const showDatepicker = () => {
-    showMode("date");
+    setShowDate(true);
   };
 
   const showTimepicker = () => {
-    showMode("time");
+    setShowTime(true);
   };
   const onSubmit = () => {
     // validate() ? console.log(formData) : console.log(errors);
@@ -75,183 +158,275 @@ const RequestOrderScreen = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.backIconButton}>
-        <IconButton
-          onPress={() => navigation.goBack()}
-          icon={
-            <Ionicons
-              name="chevron-back-circle-outline"
-              color={"black"}
-              size={23}
-            />
-          }
-        />
-      </View>
-      <View>
-        <Text style={{ fontSize: 20, fontFamily: "OpenSans-Bold" }}>
-          Chi tiết công việc
-        </Text>
-      </View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
+        <View style={styles.backIconButton}>
+          <IconButton
+            onPress={() => navigation.goBack()}
+            icon={
+              <Ionicons
+                name="chevron-back-circle-outline"
+                color={"black"}
+                size={23}
+              />
+            }
+          />
+        </View>
+        <View style={{ marginTop: 8 }}>
+          <Text style={{ fontSize: 20, fontFamily: "OpenSans-Bold" }}>
+            Chi tiết công việc
+          </Text>
+        </View>
 
-      <VStack width="100%" maxW={screenWidth} my="5">
-        <FormControl>
-          <FormControl.Label>
-            <Text style={{ fontFamily: "OpenSans-Regular" }}>Dịch vụ</Text>
-          </FormControl.Label>
-          <View style={styles.textInput}>
-            <Input
-              isReadOnly={true}
-              size="md"
-              paddingLeft="4"
-              borderWidth={0}
-              defaultValue={getJobNameById(bestService.jobId)}
-              onChangeText={(value) => setData({ ...formData, jobName: value })}
-            />
-          </View>
-
-          <FormControl.Label>
-            <Text style={{ fontFamily: "OpenSans-Regular" }}>Công việc</Text>
-          </FormControl.Label>
-
-          <View style={styles.textInput}>
-            <Input
-              isReadOnly={true}
-              size="md"
-              paddingLeft="4"
-              borderWidth={0}
-              defaultValue={bestService.serviceName}
-              onChangeText={(value) =>
-                setData({ ...formData, serviceName: value })
-              }
-            />
-          </View>
-
-          <FormControl.Label>
-            <Text style={{ fontFamily: "OpenSans-Regular" }}>Ngày</Text>
-          </FormControl.Label>
-
-          <Flex direction="row" style={styles.datetimeFlex}>
-            <View style={styles.inputDatePicker}>
+        <VStack width="100%" maxW={screenWidth} my="5">
+          <FormControl>
+            <FormControl.Label>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>Dịch vụ</Text>
+            </FormControl.Label>
+            <View style={styles.textInput}>
               <Input
-                textAlign="center"
-                placeholder="Ngày"
+                isReadOnly={true}
                 size="md"
+                paddingLeft="4"
                 borderWidth={0}
+                defaultValue={getJobNameById(bestService.jobId)}
+                onChangeText={(value) =>
+                  setData({ ...formData, jobName: value })
+                }
+              />
+            </View>
+
+            <FormControl.Label>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>Công việc</Text>
+            </FormControl.Label>
+
+            <View style={styles.textInput}>
+              <Input
+                isReadOnly={true}
+                size="md"
+                paddingLeft="4"
+                borderWidth={0}
+                defaultValue={bestService.serviceName}
                 onChangeText={(value) =>
                   setData({ ...formData, serviceName: value })
                 }
               />
             </View>
 
-            <View style={styles.inputDatePicker}>
-              <Input
-                textAlign="center"
-                placeholder="Tháng"
-                size="md"
-                borderWidth={0}
-                onChangeText={(value) =>
-                  setData({ ...formData, serviceName: value })
-                }
-              />
-            </View>
+            <FormControl.Label>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>Ngày</Text>
+            </FormControl.Label>
 
-            <View style={styles.inputDatePicker}>
-              <Input
-                textAlign="center"
-                placeholder="Năm"
-                size="md"
-                borderWidth={0}
-                onChangeText={(value) =>
-                  setData({ ...formData, serviceName: value })
-                }
-              />
-            </View>
+            <TouchableWithoutFeedback
+              onPress={() => {
+                showDatepicker();
+              }}
+            >
+              <Flex direction="row" style={styles.datetimeFlex}>
+                <View style={styles.inputDatePicker}>
+                  <Input
+                    isReadOnly={true}
+                    textAlign="center"
+                    placeholder="Ngày"
+                    size="md"
+                    borderWidth={0}
+                    defaultValue={!isSelectedDate ? "" : dateObject.day + ""}
+                  />
+                </View>
 
-            <View style={styles.buttonDate}>
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  console.log("clicked");
-                }}
-              >
-                <MaterialCommunityIcons
-                  name="calendar-month"
-                  size={20}
-                  color="white"
+                <View style={styles.inputDatePicker}>
+                  <Input
+                    isReadOnly={true}
+                    textAlign="center"
+                    placeholder="Tháng"
+                    size="md"
+                    borderWidth={0}
+                    defaultValue={!isSelectedDate ? "" : dateObject.month + ""}
+                  />
+                </View>
+
+                <View style={styles.inputDatePicker}>
+                  <Input
+                    isReadOnly={true}
+                    textAlign="center"
+                    placeholder="Năm"
+                    size="md"
+                    borderWidth={0}
+                    defaultValue={!isSelectedDate ? "" : dateObject.year + ""}
+                  />
+                </View>
+
+                <View style={styles.buttonDate}>
+                  <TouchableWithoutFeedback
+                    onPress={() => {
+                      showDatepicker();
+                    }}
+                  >
+                    <MaterialCommunityIcons
+                      name="calendar-month"
+                      size={20}
+                      color="white"
+                    />
+                  </TouchableWithoutFeedback>
+                </View>
+              </Flex>
+            </TouchableWithoutFeedback>
+
+            <FormControl.Label>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>Thời gian</Text>
+            </FormControl.Label>
+            <TouchableWithoutFeedback
+              onPress={() => {
+                showTimepicker();
+              }}
+            >
+              <Flex direction="row">
+                <View style={styles.inputTimePicker}>
+                  <Input
+                    isReadOnly={true}
+                    textAlign="center"
+                    placeholder="Giờ"
+                    size="md"
+                    borderWidth={0}
+                    defaultValue={!isSelectedTime ? "" : dateObject.hour + ""}
+                  />
+                </View>
+
+                <View style={styles.inputTimePicker}>
+                  <Input
+                    isReadOnly={true}
+                    textAlign="center"
+                    placeholder="Phút"
+                    size="md"
+                    borderWidth={0}
+                    defaultValue={!isSelectedTime ? "" : dateObject.minute + ""}
+                  />
+                </View>
+
+                <View style={styles.buttonDate}>
+                  <TouchableWithoutFeedback
+                    onPress={() => {
+                      showTimepicker();
+                    }}
+                  >
+                    <AntDesign name="clockcircle" size={18} color="white" />
+                  </TouchableWithoutFeedback>
+                </View>
+              </Flex>
+            </TouchableWithoutFeedback>
+            <View>
+              {showDate && (
+                <DateTimePicker
+                  dateFormat="day month year"
+                  display="spinner"
+                  testID="dateTimePicker"
+                  value={date}
+                  mode="date"
+                  onChange={onChangeDate}
                 />
-              </TouchableWithoutFeedback>
+              )}
+              {showTime && (
+                <DateTimePicker
+                  dateFormat="day month year"
+                  display="spinner"
+                  testID="dateTimePicker"
+                  value={date}
+                  mode="time"
+                  onChange={onChangeTime}
+                />
+              )}
             </View>
-          </Flex>
-
-          <FormControl.Label>
-            <Text style={{ fontFamily: "OpenSans-Regular" }}>Thời gian</Text>
-          </FormControl.Label>
-
-          <Flex direction="row">
-            <View style={styles.inputTimePicker}>
+            <FormControl.Label>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>Địa điểm</Text>
+            </FormControl.Label>
+            <View style={styles.textInput}>
               <Input
-                textAlign="center"
-                placeholder="Giờ"
+                placeholder="Nhập địa điểm"
                 size="md"
+                paddingLeft="4"
                 borderWidth={0}
                 onChangeText={(value) =>
-                  setData({ ...formData, serviceName: value })
+                  setData({ ...formData, location: value })
                 }
               />
             </View>
-
-            <View style={styles.inputTimePicker}>
-              <Input
-                textAlign="center"
-                placeholder="Phút"
+            <FormControl.Label>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>
+                Ghi chú (không bắt buộc)
+              </Text>
+            </FormControl.Label>
+            <View style={styles.textArea}>
+              <TextArea
+                placeholder="Nhập ghi chú"
                 size="md"
+                paddingLeft="4"
                 borderWidth={0}
-                onChangeText={(value) =>
-                  setData({ ...formData, serviceName: value })
-                }
+                onChangeText={(value) => setData({ ...formData, note: value })}
               />
             </View>
-
-            <View style={styles.buttonDate}>
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  console.log("clicked");
-                }}
-              >
-                <AntDesign name="clockcircle" size={18} color="white" />
-              </TouchableWithoutFeedback>
-            </View>
-          </Flex>
-
-          <View>
-            <View style={{ height: 45, width: 45 }}>
-              <Button onPress={showDatepicker} title="Show date picker!" />
-            </View>
-            <View style={{ height: 45, width: 45 }}>
-              <Button onPress={showTimepicker} title="Show time picker!" />
-            </View>
-            <Text>selected: {date.toLocaleString()}</Text>
-            {show && (
-              <DateTimePicker
-                display="spinner"
-                testID="dateTimePicker"
-                value={date}
-                mode={mode}
-                onChange={onChange}
-              />
-            )}
+          </FormControl>
+        </VStack>
+      </ScrollView>
+      <View style={styles.bottomViewStyle}>
+        <Flex direction="row">
+          <View
+            style={{
+              height: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Flex direction="column">
+              <View>
+                <Text>Giá ước tính</Text>
+              </View>
+              <View style={{ marginTop: 8 }}>
+                {bestService.price === 0 ? (
+                  <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+                    Thương Lượng
+                  </Text>
+                ) : (
+                  <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+                    {bestService.price / 1000}.000 VNĐ
+                  </Text>
+                )}
+              </View>
+            </Flex>
           </View>
-        </FormControl>
-
-        <Button
-          onPress={() => {
-            onSubmit();
-          }}
-          mt="5"
-          colorScheme="cyan"
-        >
-          Submit
-        </Button>
-      </VStack>
+          <Spacer />
+          <View
+            style={{
+              height: 70,
+              justifyContent: "center",
+            }}
+          >
+            <TouchableWithoutFeedback
+              // onPress={() =>
+              //   navigation.navigate("RequestOrderScreen", {
+              //     bestService: bestService,
+              //   })
+              // }
+              disabled={!isBlank ? true : false}
+              onPress={() => {
+                onSubmit();
+                navigation.navigate("RequestDetailScreen", { data: formData });
+              }}
+            >
+              {!isBlank ? (
+                <View backgroundColor="gray" style={styles.buttonStyle}>
+                  <Text style={styles.textPrice}>Tiếp tục</Text>
+                </View>
+              ) : (
+                <View backgroundColor="#02b2b9" style={styles.buttonStyle}>
+                  <Text style={styles.textPrice}>Tiếp tục</Text>
+                </View>
+              )}
+            </TouchableWithoutFeedback>
+          </View>
+        </Flex>
+      </View>
     </View>
   );
 };
@@ -276,7 +451,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     height: 45,
     borderRadius: 15,
-    width: screenWidth * 0.93,
+    width: screenWidth - 32,
     backgroundColor: "#f0f0f0",
   },
   inputDatePicker: {
@@ -303,6 +478,36 @@ const styles = StyleSheet.create({
     width: "43%",
     backgroundColor: "#f0f0f0",
     marginRight: "auto",
+  },
+  textArea: {
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    marginBottom: 16,
+    height: 150,
+    borderRadius: 15,
+    width: screenWidth - 32,
+    backgroundColor: "#f0f0f0",
+  },
+  bottomViewStyle: {
+    paddingLeft: 16,
+    paddingRight: 16,
+    marginLeft: -16,
+    width: screenWidth,
+    borderTopColor: "silver",
+    borderTopWidth: 0.5,
+    height: 70,
+  },
+  buttonStyle: {
+    flexDirection: "row",
+    borderRadius: 14,
+    height: 42,
+    width: screenWidth * 0.45,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textPrice: {
+    fontFamily: "OpenSans-Bold",
+    color: "white",
   },
 });
 export default RequestOrderScreen;

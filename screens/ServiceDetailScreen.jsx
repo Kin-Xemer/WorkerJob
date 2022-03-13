@@ -18,7 +18,7 @@ const ServiceDetailScreen = (props) => {
       <ServiceDescription bestService={bestService} />
       <Rating bestService={bestService} />
       <Spacer />
-      <BottomButton />
+      <BottomButton bestService={bestService} />
     </Flex>
   );
 };

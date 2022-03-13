@@ -9,6 +9,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const BottomButton = (props) => {
+  const { bestService } = props;
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -25,7 +26,11 @@ const BottomButton = (props) => {
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("RequestOrderScreen")}
+          onPress={() =>
+            navigation.navigate("RequestOrderScreen", {
+              bestService: bestService,
+            })
+          }
         >
           <View backgroundColor="#02b2b9" style={styles.buttonStyle}>
             <Text style={styles.textPrice}>LẤY BÁO GIÁ</Text>
