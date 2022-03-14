@@ -5,7 +5,7 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import Cart from "./screens/Cart";
+import RequestScreen from "./screens/RequestScreen";
 import {
   MaterialCommunityIcons,
   Ionicons,
@@ -70,7 +70,7 @@ const HomeScreen = () => {
 const CartScreen = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Cart" component={RequestScreen} />
     </Stack.Navigator>
   );
 };
@@ -78,7 +78,7 @@ const CartScreen = () => {
 const OrdersScreen = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Orders" component={Cart} />
+      <Stack.Screen name="Orders" component={RequestScreen} />
     </Stack.Navigator>
   );
 };
@@ -105,8 +105,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="CartScreen"
-        component={Cart}
+        name="RequestScreen"
+        component={RequestScreen}
         options={{
           tabBarLabel: "Lịch Hẹn",
           tabBarIcon: ({ color }) => (
@@ -140,7 +140,7 @@ const TabNavigator = () => {
 const SettingScreen = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Setting" component={Cart} />
+      <Stack.Screen name="Setting" component={RequestScreen} />
     </Stack.Navigator>
   );
 };

@@ -106,11 +106,6 @@ const RequestDetailScreen = (props) => {
       </View>
       <Spacer />
       <TouchableWithoutFeedback
-        // onPress={() =>
-        //   navigation.navigate("RequestOrderScreen", {
-        //     bestService: bestService,
-        //   })
-        // }
         onPress={() => {
           setIsOpen(!isOpen);
         }}
@@ -151,6 +146,7 @@ const RequestDetailScreen = (props) => {
                 <Button
                   variant="unstyled"
                   onPress={() => {
+                    setIsOpen(false);
                     navigation.navigate("ViewRequestDetailSreen", {
                       data: data,
                       bestService: bestService,
