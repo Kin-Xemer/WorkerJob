@@ -18,6 +18,7 @@ import WorkerInformation from "./screens/WorkerInformation";
 import RequestOrderScreen from "./screens/RequestOrderScreen";
 import RequestDetailScreen from "./screens/RequestDetailScreen";
 import ServiceDetailScreen from "./screens/ServiceDetailScreen";
+import ViewRequestDetailSreen from "./screens/ViewRequestDetailSreen";
 import SearchScreen from "./screens/SearchScreen";
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -40,6 +41,10 @@ const AppNavigator = () => {
       <Stack.Screen
         name="RequestDetailScreen"
         component={RequestDetailScreen}
+      />
+      <Stack.Screen
+        name="ViewRequestDetailSreen"
+        component={ViewRequestDetailSreen}
       />
       <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
     </Stack.Navigator>

@@ -33,6 +33,7 @@ const RequestDetailScreen = (props) => {
   const route = useRoute();
   const navigation = useNavigation();
   const [data, setData] = useState(route.params.data);
+  const [bestService, setBestService] = useState(route.params.bestService);
   const [isOpen, setIsOpen] = useState(false);
   const cancelRef = useRef(null);
   const onClose = () => setIsOpen(false);
@@ -147,7 +148,15 @@ const RequestDetailScreen = (props) => {
                     Hủy
                   </Text>
                 </Button>
-                <Button variant="unstyled" onPress={onClose}>
+                <Button
+                  variant="unstyled"
+                  onPress={() => {
+                    navigation.navigate("ViewRequestDetailSreen", {
+                      data: data,
+                      bestService: bestService,
+                    });
+                  }}
+                >
                   <Text
                     style={{
                       fontFamily: "OpenSans-SemiBold",

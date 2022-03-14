@@ -153,7 +153,7 @@ const RequestOrderScreen = (props) => {
   };
   const onSubmit = () => {
     // validate() ? console.log(formData) : console.log(errors);
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (
@@ -411,7 +411,10 @@ const RequestOrderScreen = (props) => {
               disabled={!isBlank ? true : false}
               onPress={() => {
                 onSubmit();
-                navigation.navigate("RequestDetailScreen", { data: formData });
+                navigation.navigate("RequestDetailScreen", {
+                  data: formData,
+                  bestService: bestService,
+                });
               }}
             >
               {!isBlank ? (
