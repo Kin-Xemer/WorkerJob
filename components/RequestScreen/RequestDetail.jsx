@@ -65,7 +65,7 @@ const RequestDetail = (props) => {
                 fontSize: 16,
               }}
             >
-              {getJobNameById(bestService.jobId)}
+              {data.jobName}
             </Text>
             <View style={{ marginTop: 2 }}>
               <Text
@@ -74,7 +74,7 @@ const RequestDetail = (props) => {
                   color: "black",
                 }}
               >
-                {bestService.serviceName}
+                {data.serviceName}
               </Text>
             </View>
           </View>
@@ -90,7 +90,7 @@ const RequestDetail = (props) => {
               }}
               destructiveIndex={1}
               options={["Chỉnh sửa", "Hủy yêu cầu"]}
-              actions={[editRequest, deleteRequest]}
+              actions={[editRequest, deleteRequest()]}
             />
           </View>
         </Flex>

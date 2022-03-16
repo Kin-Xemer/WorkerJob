@@ -22,6 +22,8 @@ import ViewRequestDetailSreen from "./screens/ViewRequestDetailSreen";
 import UpdateRequestScreen from "./screens/UpdateRequestScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import SearchScreen from "./screens/SearchScreen";
+import ReasonScreen from "./screens/ReasonScreen";
+import ResultSearchWorkerDetailScreen from "./screens/ResultSearchWorkerDetailScreen";
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const AppNavigator = () => {
@@ -47,6 +49,11 @@ const AppNavigator = () => {
       <Stack.Screen
         name="ViewRequestDetailSreen"
         component={ViewRequestDetailSreen}
+      />
+      <Stack.Screen name="ReasonScreen" component={ReasonScreen} />
+      <Stack.Screen
+        name="ResultSearchWorkerDetailScreen"
+        component={ResultSearchWorkerDetailScreen}
       />
       <Stack.Screen
         name="UpdateRequestScreen"

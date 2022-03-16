@@ -71,7 +71,6 @@ const RequestScreen = (props) => {
       <View style={{ marginBottom: 8 }}>
         <Text style={{ fontSize: 20, fontFamily: "OpenSans-SemiBold" }}>
           Lịch hẹn
-          {listData.length}
         </Text>
       </View>
       <ButtonGroup

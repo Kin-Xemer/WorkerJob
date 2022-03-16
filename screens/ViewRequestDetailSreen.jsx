@@ -172,7 +172,7 @@ const ViewRequestDetailSreen = (props) => {
               resizeMode={"contain"}
               borderRadius={300}
               source={{
-                uri: "https://i.pinimg.com/474x/8b/5f/c3/8b5fc3b2ca040e0fc20f1c8a19f6c282.jpg",
+                uri: bestService.avt,
               }}
               alt="Alternate Text"
             />

@@ -24,7 +24,7 @@ import {
   Radio,
 } from "native-base";
 import {
-  Ionicons,
+  Feather,
   MaterialCommunityIcons,
   AntDesign,
   Entypo,
@@ -36,14 +36,6 @@ const FormSearchWorkerScreen = (props) => {
   let { jobName, serviceName, setIsBlank, setDataa } = props;
   const route = useRoute();
   const navigation = useNavigation();
-  const [date, setDate] = useState(new Date());
-  const [dateObject, setDateObject] = useState({
-    day: "",
-    month: "",
-    year: "",
-    hour: "",
-    minute: "",
-  });
   const [job, setJob] = useState([
     {
       id: 1,
@@ -152,6 +144,14 @@ const FormSearchWorkerScreen = (props) => {
       estimatedPrice: "225.000đ - 700.000đ",
     },
   ]);
+  const [date, setDate] = useState(new Date());
+  const [dateObject, setDateObject] = useState({
+    day: "",
+    month: "",
+    year: "",
+    hour: "",
+    minute: "",
+  });
   const [showJob, setShowJob] = useState(false);
   const [showService, setShowService] = useState(false);
   const [showDate, setShowDate] = useState(false);
@@ -190,7 +190,7 @@ const FormSearchWorkerScreen = (props) => {
     if (isSelectedDate && isSelectedTime && formData.location !== "") {
       setIsBlank(true);
     } else {
-      setIsBlank(false);
+      setIsBlank(true);
     }
   };
 
@@ -320,7 +320,6 @@ const FormSearchWorkerScreen = (props) => {
               />
             </View>
           </TouchableWithoutFeedback>
-
           <Modal isOpen={showJob} size="lg" onClose={() => setShowJob(false)}>
             <Modal.Content maxWidth="250">
               <Modal.CloseButton />
@@ -372,11 +371,9 @@ const FormSearchWorkerScreen = (props) => {
               </Modal.Footer>
             </Modal.Content>
           </Modal>
-
           <FormControl.Label>
             <Text style={{ fontFamily: "OpenSans-Regular" }}>Công việc</Text>
           </FormControl.Label>
-
           <TouchableWithoutFeedback
             onPress={() => {
               setShowService(true);
@@ -400,7 +397,6 @@ const FormSearchWorkerScreen = (props) => {
               />
             </View>
           </TouchableWithoutFeedback>
-
           <Modal
             isOpen={showService}
             size="lg"
@@ -486,11 +482,9 @@ const FormSearchWorkerScreen = (props) => {
               </Modal.Content>
             )}
           </Modal>
-
           <FormControl.Label>
             <Text style={{ fontFamily: "OpenSans-Regular" }}>Ngày</Text>
           </FormControl.Label>
-
           <TouchableWithoutFeedback
             onPress={() => {
               showDatepicker();
@@ -545,7 +539,6 @@ const FormSearchWorkerScreen = (props) => {
               </View>
             </Flex>
           </TouchableWithoutFeedback>
-
           <FormControl.Label>
             <Text style={{ fontFamily: "OpenSans-Regular" }}>Thời gian</Text>
           </FormControl.Label>
@@ -624,6 +617,16 @@ const FormSearchWorkerScreen = (props) => {
               }
             />
           </View>
+          <FormControl.Label>
+            <Text style={{ fontFamily: "OpenSans-Regular" }}>
+              Đính kèm ảnh (không bắt buộc)
+            </Text>
+          </FormControl.Label>
+          <TouchableWithoutFeedback>
+            <View style={styles.imagePicker}>
+              <Feather name="plus-circle" size={24} color="silver" />
+            </View>
+          </TouchableWithoutFeedback>
           <FormControl.Label>
             <Text style={{ fontFamily: "OpenSans-Regular" }}>
               Mô tả (không bắt buộc)
@@ -744,6 +747,17 @@ const styles = StyleSheet.create({
   textPrice: {
     fontFamily: "OpenSans-Bold",
     color: "white",
+  },
+  imagePicker: {
+    marginBottom: 12,
+    height: 72,
+    width: 72,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "silver",
+    borderRadius: 15,
+    borderStyle: "dashed",
+    borderWidth: 1,
   },
 });
 export default FormSearchWorkerScreen;
