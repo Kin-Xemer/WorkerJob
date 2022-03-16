@@ -34,22 +34,40 @@ const ViewRequestDetailSreen = (props) => {
   const navigation = useNavigation();
   const route = useRoute();
   const [data, setData] = useState(route.params.data);
+  const [requestFrom, setRequestFrom] = useState(route.params.requestFrom);
   const [bestService, setBestService] = useState(route.params.bestService);
 
+  useEffect(() => {
+    setData(route.params.data);
+    setBestService(route.params.bestService);
+  }, [route.params]);
   return (
     <View style={styles.container}>
       <Flex direction="row" style={styles.topButton}>
         <View style={styles.backIconButton}>
-          <IconButton
-            onPress={() => navigation.navigate("Home")}
-            icon={
-              <Ionicons
-                name="chevron-back-circle-outline"
-                color={"black"}
-                size={23}
-              />
-            }
-          />
+          {requestFrom == "list" ? (
+            <IconButton
+              onPress={() => navigation.goBack()}
+              icon={
+                <Ionicons
+                  name="chevron-back-circle-outline"
+                  color={"black"}
+                  size={23}
+                />
+              }
+            />
+          ) : (
+            <IconButton
+              onPress={() => navigation.navigate("Home")}
+              icon={
+                <Ionicons
+                  name="chevron-back-circle-outline"
+                  color={"black"}
+                  size={23}
+                />
+              }
+            />
+          )}
         </View>
         <Spacer />
         <TouchableWithoutFeedback
@@ -57,6 +75,7 @@ const ViewRequestDetailSreen = (props) => {
             navigation.navigate("RequestScreen", {
               data: data,
               bestService: bestService,
+              requestFrom: requestFrom,
             });
           }}
         >
@@ -68,6 +87,7 @@ const ViewRequestDetailSreen = (props) => {
       <View style={styles.headerInfor}>
         <Text
           style={{
+            fontSize: 18,
             fontFamily: "OpenSans-Regular",
             color: "white",
           }}
@@ -77,6 +97,7 @@ const ViewRequestDetailSreen = (props) => {
         <View style={{ marginTop: 8 }}>
           <Text
             style={{
+              fontSize: 18,
               fontFamily: "OpenSans-Bold",
               color: "white",
             }}
@@ -245,7 +266,15 @@ const ViewRequestDetailSreen = (props) => {
           </View>
           <View style={{ marginLeft: 8, flex: 1 }}>
             <Text style={{ fontFamily: "OpenSans-Regular" }}>Báo giá</Text>
-            <Text style={{ fontFamily: "OpenSans-Bold" }}>140.000 VNĐ</Text>
+            {bestService.price === 0 ? (
+              <Text style={{ fontFamily: "OpenSans-Bold", fontSize: 18 }}>
+                Thương Lượng
+              </Text>
+            ) : (
+              <Text style={{ fontFamily: "OpenSans-Bold", fontSize: 18 }}>
+                {bestService.price / 1000}.000 VNĐ
+              </Text>
+            )}
           </View>
         </Flex>
       </Flex>
@@ -265,7 +294,14 @@ const ViewRequestDetailSreen = (props) => {
           <Text> </Text>
         )}
       </View>
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          navigation.navigate("UpdateRequestScreen", {
+            data: data,
+            bestService: bestService,
+          });
+        }}
+      >
         <View style={styles.touchOption}>
           <Text style={{ fontFamily: "OpenSans-Bold" }}>
             Chỉnh sửa lịch hẹn
@@ -286,7 +322,7 @@ const ViewRequestDetailSreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 18,
+    paddingTop: 22,
     paddingLeft: 16,
     paddingRight: 16,
     backgroundColor: "white",

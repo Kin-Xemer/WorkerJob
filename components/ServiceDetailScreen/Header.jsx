@@ -383,14 +383,7 @@ const Header = (props) => {
         </View>
       </Flex>
       <Flex direction="row" paddingTop={1}>
-        <Text
-          width={screenWidth / 2.5}
-          color="black"
-          fontWeight="bold"
-          fontSize="24"
-        >
-          {bestService.price / 1000}.000 VNĐ
-        </Text>
+        {bestService.price == 0}
         <Divider
           mt={1}
           h={6}

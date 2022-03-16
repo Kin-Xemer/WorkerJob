@@ -42,8 +42,10 @@ const RequestScreen = (props) => {
   const navigation = useNavigation();
   const route = useRoute();
   useEffect(() => {
-    console.log(route.params);
     if (route.params !== undefined) {
+      if (route.params.requestFrom == "update") {
+        listData.pop();
+      }
       setListData([
         ...listData,
         { data: route.params.data, bestService: route.params.bestService },
@@ -52,7 +54,8 @@ const RequestScreen = (props) => {
     } else {
       setCheck("khong co gi");
     }
-  }, []);
+  }, [route.params]);
+  const onDelete = (index) => {};
   const setTitle = (value) => {
     setSelectedIndex(value);
     if (value == 0) {
@@ -68,6 +71,7 @@ const RequestScreen = (props) => {
       <View style={{ marginBottom: 8 }}>
         <Text style={{ fontSize: 20, fontFamily: "OpenSans-SemiBold" }}>
           Lịch hẹn
+          {listData.length}
         </Text>
       </View>
       <ButtonGroup
@@ -100,8 +104,10 @@ const RequestScreen = (props) => {
           {listData.map((item, index) => (
             <RequestDetail
               key={index}
+              index={index}
               bestService={item.bestService}
               data={item.data}
+              onDelete={onDelete}
             />
           ))}
         </View>

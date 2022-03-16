@@ -19,6 +19,8 @@ import RequestOrderScreen from "./screens/RequestOrderScreen";
 import RequestDetailScreen from "./screens/RequestDetailScreen";
 import ServiceDetailScreen from "./screens/ServiceDetailScreen";
 import ViewRequestDetailSreen from "./screens/ViewRequestDetailSreen";
+import UpdateRequestScreen from "./screens/UpdateRequestScreen";
+import WelcomeScreen from "./screens/WelcomeScreen";
 import SearchScreen from "./screens/SearchScreen";
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -46,6 +48,10 @@ const AppNavigator = () => {
         name="ViewRequestDetailSreen"
         component={ViewRequestDetailSreen}
       />
+      <Stack.Screen
+        name="UpdateRequestScreen"
+        component={UpdateRequestScreen}
+      />
       <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
     </Stack.Navigator>
   );
@@ -60,6 +66,7 @@ const HomeScreen = () => {
         headerTitleAlign: "center",
       }}
     >
+      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="ServicesRecommend" component={ServicesRecommend} />
       <Stack.Screen name="Home" component={Home} />

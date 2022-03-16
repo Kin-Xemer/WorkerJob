@@ -30,7 +30,7 @@ import {
 import DatePicker from "react-native-date-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
-const RequestOrderScreen = (props) => {
+const UpdateRequestScreen = (props) => {
   const { jobName, serviceName } = props;
   const route = useRoute();
   const navigation = useNavigation();
@@ -48,11 +48,14 @@ const RequestOrderScreen = (props) => {
   const [isSelectedTime, setIsSelectedTime] = useState(false);
   const [isBlank, setIsBlank] = useState(false);
   const [bestService, setBestService] = useState(route.params.bestService);
+  const [dataa, setDataa] = useState(route.params.data);
+  const [requestFrom, setRequestFrom] = useState(route.params.requestFrom);
   const [formData, setData] = useState({
-    jobName: getJobNameById(bestService.jobId),
     serviceName: bestService.serviceName,
-    location: "",
-    note: "",
+    jobName: dataa.jobName,
+    location: dataa.location,
+    note: dataa.note,
+    date: dataa.date,
   });
   useEffect(() => {
     getDayMonthYear();
@@ -68,7 +71,7 @@ const RequestOrderScreen = (props) => {
   ]);
 
   const checkBlank = () => {
-    if (isSelectedDate && isSelectedTime && formData.location !== "") {
+    if (formData.location !== "") {
       setIsBlank(true);
     } else {
       setIsBlank(false);
@@ -191,7 +194,7 @@ const RequestOrderScreen = (props) => {
                 size="md"
                 paddingLeft="4"
                 borderWidth={0}
-                defaultValue={getJobNameById(bestService.jobId)}
+                defaultValue={dataa.jobName}
                 onChangeText={(value) =>
                   setData({ ...formData, jobName: value })
                 }
@@ -232,7 +235,7 @@ const RequestOrderScreen = (props) => {
                     placeholder="Ngày"
                     size="md"
                     borderWidth={0}
-                    defaultValue={!isSelectedDate ? "" : dateObject.day + ""}
+                    defaultValue={dataa.date.day + ""}
                   />
                 </View>
 
@@ -243,7 +246,7 @@ const RequestOrderScreen = (props) => {
                     placeholder="Tháng"
                     size="md"
                     borderWidth={0}
-                    defaultValue={!isSelectedDate ? "" : dateObject.month + ""}
+                    defaultValue={dataa.date.month + ""}
                   />
                 </View>
 
@@ -254,7 +257,7 @@ const RequestOrderScreen = (props) => {
                     placeholder="Năm"
                     size="md"
                     borderWidth={0}
-                    defaultValue={!isSelectedDate ? "" : dateObject.year + ""}
+                    defaultValue={dataa.date.year + ""}
                   />
                 </View>
 
@@ -290,7 +293,7 @@ const RequestOrderScreen = (props) => {
                     placeholder="Giờ"
                     size="md"
                     borderWidth={0}
-                    defaultValue={!isSelectedTime ? "" : dateObject.hour + ""}
+                    defaultValue={dataa.date.hour + ""}
                   />
                 </View>
 
@@ -301,7 +304,7 @@ const RequestOrderScreen = (props) => {
                     placeholder="Phút"
                     size="md"
                     borderWidth={0}
-                    defaultValue={!isSelectedTime ? "" : dateObject.minute + ""}
+                    defaultValue={dataa.date.minute + ""}
                   />
                 </View>
 
@@ -347,6 +350,7 @@ const RequestOrderScreen = (props) => {
                 size="md"
                 paddingLeft="4"
                 borderWidth={0}
+                defaultValue={dataa.location}
                 onChangeText={(value) =>
                   setData({ ...formData, location: value })
                 }
@@ -363,6 +367,7 @@ const RequestOrderScreen = (props) => {
                 size="md"
                 paddingLeft="4"
                 borderWidth={0}
+                defaultValue={dataa.note}
                 onChangeText={(value) => setData({ ...formData, note: value })}
               />
             </View>
@@ -402,31 +407,51 @@ const RequestOrderScreen = (props) => {
               justifyContent: "center",
             }}
           >
-            <TouchableWithoutFeedback
-              // onPress={() =>
-              //   navigation.navigate("RequestOrderScreen", {
-              //     bestService: bestService,
-              //   })
-              // }
-              disabled={!isBlank ? true : false}
-              onPress={() => {
-                onSubmit();
-                navigation.navigate("RequestDetailScreen", {
-                  data: formData,
-                  bestService: bestService,
-                });
-              }}
-            >
-              {!isBlank ? (
-                <View backgroundColor="gray" style={styles.buttonStyle}>
-                  <Text style={styles.textPrice}>Tiếp tục</Text>
-                </View>
-              ) : (
-                <View backgroundColor="#02b2b9" style={styles.buttonStyle}>
-                  <Text style={styles.textPrice}>Tiếp tục</Text>
-                </View>
-              )}
-            </TouchableWithoutFeedback>
+            {requestFrom === "list" ? (
+              <TouchableWithoutFeedback
+                disabled={!isBlank ? true : false}
+                onPress={() => {
+                  onSubmit();
+                  navigation.navigate("RequestScreen", {
+                    data: formData,
+                    bestService: bestService,
+                    requestFrom: "update",
+                  });
+                }}
+              >
+                {!isBlank ? (
+                  <View backgroundColor="gray" style={styles.buttonStyle}>
+                    <Text style={styles.textPrice}>Lưu</Text>
+                  </View>
+                ) : (
+                  <View backgroundColor="#02b2b9" style={styles.buttonStyle}>
+                    <Text style={styles.textPrice}>Lưu</Text>
+                  </View>
+                )}
+              </TouchableWithoutFeedback>
+            ) : (
+              <TouchableWithoutFeedback
+                disabled={!isBlank ? true : false}
+                onPress={() => {
+                  onSubmit();
+                  navigation.navigate("ViewRequestDetailSreen", {
+                    data: formData,
+                    bestService: bestService,
+                    requestFrom: "update",
+                  });
+                }}
+              >
+                {!isBlank ? (
+                  <View backgroundColor="gray" style={styles.buttonStyle}>
+                    <Text style={styles.textPrice}>Lưu</Text>
+                  </View>
+                ) : (
+                  <View backgroundColor="#02b2b9" style={styles.buttonStyle}>
+                    <Text style={styles.textPrice}>Lưu</Text>
+                  </View>
+                )}
+              </TouchableWithoutFeedback>
+            )}
           </View>
         </Flex>
       </View>
@@ -513,4 +538,4 @@ const styles = StyleSheet.create({
     color: "white",
   },
 });
-export default RequestOrderScreen;
+export default UpdateRequestScreen;

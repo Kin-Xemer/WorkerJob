@@ -6,6 +6,7 @@ import {
   View,
   Dimensions,
   TouchableWithoutFeedback,
+  TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -13,7 +14,6 @@ import { SearchBar } from "react-native-elements";
 import { useState, useEffect, useRef } from "react";
 import { Input, Icon } from "native-base";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
-const Context = createContext();
 const Header = (props) => {
   let { resultProps, setSearchResult } = props;
   const navigation = useNavigation();
@@ -60,9 +60,25 @@ const Header = (props) => {
               color="coolGray.300"
             />
           }
-          placeholder="Tìm từ khóa"
+          placeholder="Tìm dịch vụ "
         />
       </View>
+      {/* <TouchableOpacity>
+        <View
+          style={{
+            height: 45,
+            width: 100,
+            backgroundColor: "#02b2b9",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 15,
+          }}
+        >
+          <Text style={{ fontWeight: "bold", color: "white" }}>
+            Tìm thợ nhanh
+          </Text>
+        </View>
+      </TouchableOpacity> */}
     </View>
   );
 };

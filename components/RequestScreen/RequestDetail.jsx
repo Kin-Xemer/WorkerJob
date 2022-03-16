@@ -32,169 +32,200 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import OptionsMenu from "react-native-option-menu";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const RequestDetail = (props) => {
-  const { bestService, data } = props;
+  const navigation = useNavigation();
+  let { bestService, data, index } = props;
   const MoreIcon = <MaterialIcons name="more-vert" color={"black"} size={25} />;
+  const deleteRequest = () => {
+    console.log("Delete request");
+  };
+  const editRequest = () => {
+    navigation.navigate("UpdateRequestScreen", {
+      data: data,
+      bestService: bestService,
+      requestFrom: "list",
+    });
+  };
   return (
-    <View style={styles.container}>
-      <Flex style={styles.headerInfor} direction="row">
-        <View>
-          <Text
-            style={{
-              fontFamily: "OpenSans-Bold",
-              color: "black",
-              fontSize: 16,
-            }}
-          >
-            {getJobNameById(bestService.jobId)}
-          </Text>
-          <View style={{ marginTop: 2 }}>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        navigation.navigate("ViewRequestDetailSreen", {
+          data: data,
+          bestService: bestService,
+          requestFrom: "list",
+        });
+      }}
+    >
+      <View style={styles.container}>
+        <Flex style={styles.headerInfor} direction="row">
+          <View>
             <Text
               style={{
-                fontFamily: "OpenSans-Regular",
+                fontFamily: "OpenSans-Bold",
                 color: "black",
+                fontSize: 16,
               }}
             >
-              {bestService.serviceName}
+              {getJobNameById(bestService.jobId)}
             </Text>
-          </View>
-        </View>
-        <Spacer />
-        <View style={styles.buttonMore}>
-          <OptionsMenu
-            customButton={MoreIcon}
-            buttonStyle={{
-              width: 32,
-              height: 8,
-              margin: 7.5,
-              resizeMode: "contain",
-            }}
-            destructiveIndex={1}
-            options={["Chia sẻ", "Báo cáo", "Gắn cờ"]}
-            //   actions={[editPost, deletePost]}
-          />
-        </View>
-      </Flex>
-      <View style={{ marginBottom: 8 }}>
-        <DashedLine
-          dashLength={3}
-          dashThickness={1}
-          dashColor="#02b2b9"
-          dashStyle={{ borderRadius: 3 }}
-          dashGap={3}
-        />
-      </View>
-      <Flex style={styles.detailContainer}>
-        <Flex direction="row" style={styles.workerLabel}>
-          <View style={styles.iconStyle}>
-            <Image
-              size={10}
-              resizeMode={"contain"}
-              borderRadius={300}
-              source={{
-                uri: bestService.avt,
-              }}
-              alt="Alternate Text"
-            />
-          </View>
-          <View style={{ marginLeft: 8, flex: 1 }}>
-            <Text style={{ fontFamily: "OpenSans-Regular" }}>Thợ</Text>
-            <Text style={{ fontFamily: "OpenSans-Bold" }}>
-              {bestService.workerName}
-            </Text>
-            <TouchableWithoutFeedback>
-              <View
+            <View style={{ marginTop: 2 }}>
+              <Text
                 style={{
-                  marginTop: 8,
-                  width: 100,
-                  borderRadius: 25,
-                  borderWidth: 1,
-                  alignItems: "center",
-                  paddingVertical: 8,
-                  borderColor: "#02b2b9",
+                  fontFamily: "OpenSans-Regular",
+                  color: "black",
                 }}
               >
-                <Text
-                  style={{ fontFamily: "OpenSans-Regular", color: "#02b2b9" }}
-                >
-                  LIÊN HỆ
-                </Text>
-              </View>
-            </TouchableWithoutFeedback>
-            <View style={{ marginTop: 10 }}>
-              <DashedLine
-                dashLength={3}
-                dashThickness={1}
-                dashColor="#02b2b9"
-                dashStyle={{ borderRadius: 3 }}
-                dashGap={3}
-              />
+                {bestService.serviceName}
+              </Text>
             </View>
           </View>
-        </Flex>
-
-        <Flex direction="row" style={styles.timeLabel}>
-          <View style={styles.iconStyle}>
-            <MaterialCommunityIcons
-              name="calendar-clock"
-              size={25}
-              color="black"
+          <Spacer />
+          <View style={styles.buttonMore}>
+            <OptionsMenu
+              customButton={MoreIcon}
+              buttonStyle={{
+                width: 32,
+                height: 8,
+                margin: 7.5,
+                resizeMode: "contain",
+              }}
+              destructiveIndex={1}
+              options={["Chỉnh sửa", "Hủy yêu cầu"]}
+              actions={[editRequest, deleteRequest]}
             />
           </View>
-          <View style={{ marginLeft: 8, flex: 1 }}>
-            <Text style={{ fontFamily: "OpenSans-Regular" }}>
-              Thời gian làm việc
-            </Text>
-            <Flex direction="row">
-              <Text style={{ fontFamily: "OpenSans-Bold" }}>
-                {data.date.day}/{data.date.month}/{data.date.year}
-              </Text>
-              <Divider mx={4} orientation="vertical" bg="black" />
-              <Text style={{ fontFamily: "OpenSans-Bold" }}>
-                {data.date.hour}:{data.date.minute}
-              </Text>
-            </Flex>
-            <View style={{ marginTop: 10 }}>
-              <DashedLine
-                dashLength={3}
-                dashThickness={1}
-                dashColor="#02b2b9"
-                dashStyle={{ borderRadius: 3 }}
-                dashGap={3}
+        </Flex>
+        <View style={{ marginBottom: 8 }}>
+          <DashedLine
+            dashLength={3}
+            dashThickness={1}
+            dashColor="#02b2b9"
+            dashStyle={{ borderRadius: 3 }}
+            dashGap={3}
+          />
+        </View>
+        <Flex style={styles.detailContainer}>
+          <Flex direction="row" style={styles.workerLabel}>
+            <View style={styles.iconStyle}>
+              <Image
+                size={10}
+                resizeMode={"contain"}
+                borderRadius={300}
+                source={{
+                  uri: bestService.avt,
+                }}
+                alt="Alternate Text"
               />
             </View>
-          </View>
-        </Flex>
+            <View style={{ marginLeft: 8, flex: 1 }}>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>Thợ</Text>
+              <Text style={{ fontFamily: "OpenSans-Bold" }}>
+                {bestService.workerName}
+              </Text>
+              <TouchableWithoutFeedback>
+                <View
+                  style={{
+                    marginTop: 8,
+                    width: 100,
+                    borderRadius: 25,
+                    borderWidth: 1,
+                    alignItems: "center",
+                    paddingVertical: 8,
+                    borderColor: "#02b2b9",
+                  }}
+                >
+                  <Text
+                    style={{ fontFamily: "OpenSans-Regular", color: "#02b2b9" }}
+                  >
+                    LIÊN HỆ
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <View style={{ marginTop: 10 }}>
+                <DashedLine
+                  dashLength={3}
+                  dashThickness={1}
+                  dashColor="#02b2b9"
+                  dashStyle={{ borderRadius: 3 }}
+                  dashGap={3}
+                />
+              </View>
+            </View>
+          </Flex>
 
-        <Flex direction="row" style={styles.timeLabel}>
-          <View style={styles.iconStyle}>
-            <MaterialIcons name="location-on" size={25} color="black" />
-          </View>
-          <View style={{ marginLeft: 8, flex: 1 }}>
-            <Text style={{ fontFamily: "OpenSans-Regular" }}>Địa điểm</Text>
-            <Text style={{ fontFamily: "OpenSans-Bold" }}>{data.location}</Text>
-            <View style={{ marginTop: 10 }}>
-              <DashedLine
-                dashLength={3}
-                dashThickness={1}
-                dashColor="#02b2b9"
-                dashStyle={{ borderRadius: 3 }}
-                dashGap={3}
+          <Flex direction="row" style={styles.timeLabel}>
+            <View style={styles.iconStyle}>
+              <MaterialCommunityIcons
+                name="calendar-clock"
+                size={25}
+                color="black"
               />
             </View>
-          </View>
-        </Flex>
+            <View style={{ marginLeft: 8, flex: 1 }}>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>
+                Thời gian làm việc
+              </Text>
+              <Flex direction="row">
+                <Text style={{ fontFamily: "OpenSans-Bold" }}>
+                  {data.date.day}/{data.date.month}/{data.date.year}
+                </Text>
+                <Divider mx={4} orientation="vertical" bg="black" />
+                <Text style={{ fontFamily: "OpenSans-Bold" }}>
+                  {data.date.hour}:{data.date.minute}
+                </Text>
+              </Flex>
+              <View style={{ marginTop: 10 }}>
+                <DashedLine
+                  dashLength={3}
+                  dashThickness={1}
+                  dashColor="#02b2b9"
+                  dashStyle={{ borderRadius: 3 }}
+                  dashGap={3}
+                />
+              </View>
+            </View>
+          </Flex>
 
-        <Flex direction="row" style={styles.timeLabel}>
-          <View style={styles.iconStyle}>
-            <FontAwesome5 name="money-bill-wave" size={25} color="black" />
-          </View>
-          <View style={{ marginLeft: 8, flex: 1 }}>
-            <Text style={{ fontFamily: "OpenSans-Regular" }}>Báo giá</Text>
-            <Text style={{ fontFamily: "OpenSans-Bold" }}>140.000 VNĐ</Text>
-          </View>
+          <Flex direction="row" style={styles.timeLabel}>
+            <View style={styles.iconStyle}>
+              <MaterialIcons name="location-on" size={25} color="black" />
+            </View>
+            <View style={{ marginLeft: 8, flex: 1 }}>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>Địa điểm</Text>
+              <Text style={{ fontFamily: "OpenSans-Bold" }}>
+                {data.location}
+              </Text>
+              <View style={{ marginTop: 10 }}>
+                <DashedLine
+                  dashLength={3}
+                  dashThickness={1}
+                  dashColor="#02b2b9"
+                  dashStyle={{ borderRadius: 3 }}
+                  dashGap={3}
+                />
+              </View>
+            </View>
+          </Flex>
+
+          <Flex direction="row" style={styles.timeLabel}>
+            <View style={styles.iconStyle}>
+              <FontAwesome5 name="money-bill-wave" size={25} color="black" />
+            </View>
+            <View style={{ marginLeft: 8, flex: 1 }}>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>Báo giá</Text>
+              {bestService.price === 0 ? (
+                <Text style={{ fontFamily: "OpenSans-Bold", fontSize: 18 }}>
+                  Thương Lượng
+                </Text>
+              ) : (
+                <Text style={{ fontFamily: "OpenSans-Bold", fontSize: 18 }}>
+                  {bestService.price / 1000}.000 VNĐ
+                </Text>
+              )}
+            </View>
+          </Flex>
         </Flex>
-      </Flex>
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 const styles = StyleSheet.create({

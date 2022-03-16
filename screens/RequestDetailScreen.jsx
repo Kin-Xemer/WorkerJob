@@ -150,6 +150,7 @@ const RequestDetailScreen = (props) => {
                     navigation.navigate("ViewRequestDetailSreen", {
                       data: data,
                       bestService: bestService,
+                      requestFrom: "Detail",
                     });
                   }}
                 >
@@ -173,7 +174,7 @@ const RequestDetailScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     paddingBottom: 12,
-    paddingTop: 18,
+    paddingTop: 20,
     paddingLeft: 16,
     paddingRight: 16,
     backgroundColor: "white",
