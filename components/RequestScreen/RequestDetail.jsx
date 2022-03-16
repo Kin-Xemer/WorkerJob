@@ -33,11 +33,17 @@ import OptionsMenu from "react-native-option-menu";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const RequestDetail = (props) => {
   const navigation = useNavigation();
-  let { bestService, data, index } = props;
+  let {
+    bestService,
+    data,
+    setShowModalPrice,
+    setShowModal,
+    isAccept,
+    deleteRequest,
+    serviceName,
+  } = props;
   const MoreIcon = <MaterialIcons name="more-vert" color={"black"} size={25} />;
-  const deleteRequest = () => {
-    console.log("Delete request");
-  };
+
   const editRequest = () => {
     navigation.navigate("UpdateRequestScreen", {
       data: data,
@@ -89,8 +95,16 @@ const RequestDetail = (props) => {
                 resizeMode: "contain",
               }}
               destructiveIndex={1}
-              options={["Chỉnh sửa", "Hủy yêu cầu"]}
-              actions={[editRequest, deleteRequest()]}
+              options={["Hủy yêu cầu", "Chỉnh sửa", "Báo cáo"]}
+              actions={[
+                () => {
+                  setShowModal(true);
+                },
+                editRequest,
+                () => {
+                  setShowModal(true);
+                },
+              ]}
             />
           </View>
         </Flex>
@@ -213,16 +227,90 @@ const RequestDetail = (props) => {
             <View style={{ marginLeft: 8, flex: 1 }}>
               <Text style={{ fontFamily: "OpenSans-Regular" }}>Báo giá</Text>
               {bestService.price === 0 ? (
-                <Text style={{ fontFamily: "OpenSans-Bold", fontSize: 18 }}>
+                <Text style={{ fontFamily: "OpenSans-Bold", fontSize: 15 }}>
                   Thương Lượng
                 </Text>
               ) : (
-                <Text style={{ fontFamily: "OpenSans-Bold", fontSize: 18 }}>
+                <Text style={{ fontFamily: "OpenSans-Bold", fontSize: 15 }}>
                   {bestService.price / 1000}.000 VNĐ
                 </Text>
               )}
             </View>
+            <Spacer />
+            {isAccept ? (
+              <View></View>
+            ) : (
+              <Button
+                bgColor="rgb(2, 178, 185)"
+                style={{ borderRadius: 30, height: 45 }}
+                onPress={() => {
+                  setShowModalPrice(true);
+                }}
+              >
+                <Text
+                  style={{
+                    fontFamily: "OpenSans-Regular",
+                    color: "white",
+                    fontSize: 12,
+                  }}
+                >
+                  Chấp nhận giá
+                </Text>
+              </Button>
+            )}
           </Flex>
+          {isAccept ? (
+            <Flex style={styles.timeLabel}>
+              <View style={{ marginLeft: 8, flex: 1 }}>
+                <View style={{ marginBottom: 10 }}>
+                  <DashedLine
+                    dashLength={3}
+                    dashThickness={1}
+                    dashColor="#02b2b9"
+                    dashStyle={{ borderRadius: 3 }}
+                    dashGap={3}
+                  />
+                </View>
+                <Button
+                  bgColor="rgb(2, 178, 185)"
+                  style={{ borderRadius: 30, height: 45 }}
+                  onPress={() => {
+                    navigation.navigate("CompleteScreen", {
+                      bestService: bestService,
+                      serviceName: serviceName,
+                    });
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontFamily: "OpenSans-Bold",
+                      color: "white",
+                      fontSize: 12,
+                    }}
+                  >
+                    HOÀN THÀNH LỊCH HẸN
+                  </Text>
+                </Button>
+                <View style={{ marginTop: 10 }}>
+                  <Text
+                    style={{
+                      fontFamily: "OpenSans-Regular",
+                      textAlign: "center",
+                    }}
+                  >
+                    {" "}
+                    Vui lòng xác nhận{" "}
+                    <Text style={{ fontFamily: "OpenSans-Bold" }}>
+                      HOÀN THÀNH LỊCH HẸN
+                    </Text>{" "}
+                    và Thợ có thể nhận thanh toán.
+                  </Text>
+                </View>
+              </View>
+            </Flex>
+          ) : (
+            <View></View>
+          )}
         </Flex>
       </View>
     </TouchableWithoutFeedback>

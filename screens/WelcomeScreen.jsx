@@ -21,6 +21,7 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
+import PropTypes from "prop-types";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import Header from "../components/SearchScreen/Header";
 import Finder from "../assets/Finder.png";
@@ -101,7 +102,7 @@ const WelcomeScreen = (props) => {
       serviceName: "Sửa khóa, đánh khóa",
       price: 240000,
       ratingAmount: 16,
-      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154459.png",
+      avt: "https://cdn-icons-png.flaticon.com/512/1154/1154470.png",
       description: "Sủa khóa, làm chìa, phá khóa nhà cửa",
     },
     {

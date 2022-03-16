@@ -371,7 +371,7 @@ const Header = (props) => {
           color="gray.600"
           fontWeight="400"
           onPress={() => {
-            navigation.push("WorkerInformation", {
+            navigation.push("Profile", {
               worker: getWorkerById(),
             });
           }}
@@ -383,7 +383,25 @@ const Header = (props) => {
         </View>
       </Flex>
       <Flex direction="row" paddingTop={1}>
-        {bestService.price == 0}
+        {bestService.price == 0 ? (
+          <Text
+            width={screenWidth / 2.5}
+            color="black"
+            fontWeight="bold"
+            fontSize="24"
+          >
+            Thương lượng
+          </Text>
+        ) : (
+          <Text
+            width={screenWidth / 2.5}
+            color="black"
+            fontWeight="bold"
+            fontSize="24"
+          >
+            {bestService.price / 1000}.000 VNĐ
+          </Text>
+        )}
         <Divider
           mt={1}
           h={6}

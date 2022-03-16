@@ -64,13 +64,8 @@ const ResultSearchWorkerDetailScreen = (props) => {
     <>
       {isFind ? (
         <View style={styles.container}>
-          <Modal
-            isOpen={open}
-            onClose={() => setOpen(false)}
-            mt={12}
-            animationPreset="slide"
-          >
-            <Modal.Content maxWidth="350" {...styles["bottom"]}>
+          <Modal isOpen={open} onClose={() => setOpen(false)} mt={12}>
+            <Modal.Content maxWidth="350" {...styles["top"]}>
               <Modal.Header>
                 <Text style={{ fontSize: 18, fontFamily: "OpenSans-Bold" }}>
                   WorkerJob
@@ -382,7 +377,11 @@ const ResultSearchWorkerDetailScreen = (props) => {
             </View>
           </View>
           <Divider bg="#f0f0f0" thickness="1" />
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              navigation.navigate("ReasonScreen");
+            }}
+          >
             <View style={styles.touchOption}>
               <Text style={{ fontFamily: "OpenSans-Bold", color: "red" }}>
                 Huỷ lịch hẹn
@@ -507,6 +506,11 @@ const styles = StyleSheet.create({
   },
   touchOption: {
     paddingVertical: 10,
+  },
+  top: {
+    borderRadius: 15,
+    marginBottom: "auto",
+    marginTop: 0,
   },
 });
 export default ResultSearchWorkerDetailScreen;
