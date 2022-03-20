@@ -190,7 +190,7 @@ const FormSearchWorkerScreen = (props) => {
     if (isSelectedDate && isSelectedTime && formData.location !== "") {
       setIsBlank(true);
     } else {
-      setIsBlank(true);
+      setIsBlank(false);
     }
   };
 
@@ -320,6 +320,7 @@ const FormSearchWorkerScreen = (props) => {
               />
             </View>
           </TouchableWithoutFeedback>
+
           <Modal isOpen={showJob} size="lg" onClose={() => setShowJob(false)}>
             <Modal.Content maxWidth="250">
               <Modal.CloseButton />

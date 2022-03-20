@@ -165,48 +165,54 @@ const ViewRequestDetailSreen = (props) => {
       </View>
 
       <Flex style={styles.detailContainer}>
-        <Flex direction="row" style={styles.workerLabel}>
-          <View style={styles.iconStyle}>
-            <Image
-              size={10}
-              resizeMode={"contain"}
-              borderRadius={300}
-              source={{
-                uri: bestService.avt,
-              }}
-              alt="Alternate Text"
-            />
-          </View>
-          <View style={{ marginLeft: 8, flex: 1 }}>
-            <Text style={{ fontFamily: "OpenSans-Regular" }}>Thợ</Text>
-            <Text style={{ fontFamily: "OpenSans-Bold" }}>
-              {bestService.workerName}
-            </Text>
-            <TouchableWithoutFeedback>
-              <View
-                style={{
-                  marginTop: 8,
-                  width: 100,
-                  borderRadius: 25,
-                  borderWidth: 1,
-                  alignItems: "center",
-                  paddingVertical: 8,
+        <TouchableWithoutFeedback
+          onPress={() => {
+            navigation.navigate("WorkerInformation", { worker: bestService });
+          }}
+        >
+          <Flex direction="row" style={styles.workerLabel}>
+            <View style={styles.iconStyle}>
+              <Image
+                size={10}
+                resizeMode={"contain"}
+                borderRadius={300}
+                source={{
+                  uri: bestService.avt,
                 }}
-              >
-                <Text>LIÊN HỆ</Text>
-              </View>
-            </TouchableWithoutFeedback>
-            <View style={{ marginTop: 10 }}>
-              <DashedLine
-                dashLength={3}
-                dashThickness={1}
-                dashColor="gray"
-                dashStyle={{ borderRadius: 3 }}
-                dashGap={3}
+                alt="Alternate Text"
               />
             </View>
-          </View>
-        </Flex>
+            <View style={{ marginLeft: 8, flex: 1 }}>
+              <Text style={{ fontFamily: "OpenSans-Regular" }}>Thợ</Text>
+              <Text style={{ fontFamily: "OpenSans-Bold" }}>
+                {bestService.workerName}
+              </Text>
+              <TouchableWithoutFeedback>
+                <View
+                  style={{
+                    marginTop: 8,
+                    width: 100,
+                    borderRadius: 25,
+                    borderWidth: 1,
+                    alignItems: "center",
+                    paddingVertical: 8,
+                  }}
+                >
+                  <Text>LIÊN HỆ</Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <View style={{ marginTop: 10 }}>
+                <DashedLine
+                  dashLength={3}
+                  dashThickness={1}
+                  dashColor="gray"
+                  dashStyle={{ borderRadius: 3 }}
+                  dashGap={3}
+                />
+              </View>
+            </View>
+          </Flex>
+        </TouchableWithoutFeedback>
 
         <Flex direction="row" style={styles.timeLabel}>
           <View style={styles.iconStyle}>
@@ -309,7 +315,11 @@ const ViewRequestDetailSreen = (props) => {
         </View>
       </TouchableWithoutFeedback>
       <Divider bg="#f0f0f0" thickness="1" />
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          navigation.navigate("ReasonScreen");
+        }}
+      >
         <View style={styles.touchOption}>
           <Text style={{ fontFamily: "OpenSans-Bold", color: "red" }}>
             Huỷ lịch hẹn

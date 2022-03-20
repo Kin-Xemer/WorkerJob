@@ -51,7 +51,7 @@ const UpdateRequestScreen = (props) => {
   const [dataa, setDataa] = useState(route.params.data);
   const [requestFrom, setRequestFrom] = useState(route.params.requestFrom);
   const [formData, setData] = useState({
-    serviceName: bestService.serviceName,
+    serviceName: dataa.serviceName,
     jobName: dataa.jobName,
     location: dataa.location,
     note: dataa.note,

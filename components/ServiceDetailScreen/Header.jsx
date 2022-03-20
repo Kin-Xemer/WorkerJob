@@ -371,7 +371,7 @@ const Header = (props) => {
           color="gray.600"
           fontWeight="400"
           onPress={() => {
-            navigation.push("Profile", {
+            navigation.push("WorkerInformation", {
               worker: getWorkerById(),
             });
           }}

@@ -279,6 +279,7 @@ const RequestDetail = (props) => {
                       bestService: bestService,
                       serviceName: serviceName,
                     });
+                    deleteRequest();
                   }}
                 >
                   <Text

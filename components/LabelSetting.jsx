@@ -1,4 +1,4 @@
-import { Divider, Button } from "native-base";
+import { Divider, Flex, Spacer } from "native-base";
 import {
   View,
   Text,
@@ -9,15 +9,20 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
-const LabelReason = (props) => {
+const LabelSetting = (props) => {
   const { reasonText } = props;
   return (
     <TouchableOpacity>
       <View style={{ alignItems: "flex-start", justifyContent: "center" }}>
-        <Text style={{ fontFamily: "OpenSans-Regular", fontSize: 14 }}>
-          {reasonText}
-        </Text>
+        <Flex direction="row">
+          <Text style={{ fontFamily: "OpenSans-Regular", fontSize: 14 }}>
+            {reasonText}
+          </Text>
+          <Spacer />
+          <Entypo name="chevron-right" size={12} color="black" />
+        </Flex>
         <Divider my="4" />
       </View>
     </TouchableOpacity>
@@ -35,4 +40,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-export default LabelReason;
+export default LabelSetting;

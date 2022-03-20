@@ -22,7 +22,12 @@ import ViewRequestDetailSreen from "./screens/ViewRequestDetailSreen";
 import UpdateRequestScreen from "./screens/UpdateRequestScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import SearchScreen from "./screens/SearchScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 import ReasonScreen from "./screens/ReasonScreen";
+import LoginScreenn from "./screens/LoginScreenn";
+import CompleteScreen from "./screens/CompleteScreen";
+import MoreScreen from "./screens/MoreScreen";
+import NotiScreen from "./screens/NotiScreen";
 import ResultSearchWorkerDetailScreen from "./screens/ResultSearchWorkerDetailScreen";
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -60,6 +65,9 @@ const AppNavigator = () => {
         component={UpdateRequestScreen}
       />
       <Stack.Screen name="WorkerInformation" component={WorkerInformation} />
+      <Stack.Screen name="CompleteScreen" component={CompleteScreen} />
+      <Stack.Screen name="LoginScreenn" component={LoginScreenn} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
@@ -81,21 +89,6 @@ const HomeScreen = () => {
   );
 };
 
-const CartScreen = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Cart" component={RequestScreen} />
-    </Stack.Navigator>
-  );
-};
-
-const OrdersScreen = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Orders" component={RequestScreen} />
-    </Stack.Navigator>
-  );
-};
 const TabNavigator = () => {
   return (
     <Tab.Navigator
@@ -129,8 +122,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="OrderScreen"
-        component={OrdersScreen}
+        name="NotiScreen"
+        component={NotiScreen}
         options={{
           tabBarLabel: "Thông Báo",
           tabBarIcon: ({ color }) => (
@@ -139,8 +132,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="SettingScreen"
-        component={SettingScreen}
+        name="MoreScreen"
+        component={MoreScreen}
         options={{
           tabBarLabel: "Thêm",
           tabBarIcon: ({ color }) => (
@@ -154,7 +147,7 @@ const TabNavigator = () => {
 const SettingScreen = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Setting" component={RequestScreen} />
+      <Stack.Screen name="MoreScreen" component={MoreScreen} />
     </Stack.Navigator>
   );
 };

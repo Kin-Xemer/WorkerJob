@@ -83,7 +83,7 @@ const RequestScreen = (props) => {
   return (
     <View style={styles.container}>
       <View style={{ marginBottom: 8 }}>
-        <Text style={{ fontSize: 20, fontFamily: "OpenSans-SemiBold" }}>
+        <Text style={{ fontSize: 23, fontFamily: "OpenSans-SemiBold" }}>
           Lịch hẹn
         </Text>
       </View>
@@ -126,6 +126,7 @@ const RequestScreen = (props) => {
                 setShowModalPrice={setShowModalPrice}
                 isAccept={isAccept}
                 serviceName={serviceName}
+                deleteRequest={deleteRequest}
               />
             ))}
           </View>
@@ -279,7 +280,7 @@ const styles = StyleSheet.create({
   container: {
     paddingLeft: 16,
     paddingRight: 16,
-    paddingTop: 32,
+    paddingTop: 42,
     backgroundColor: "white",
     flex: 1,
   },
